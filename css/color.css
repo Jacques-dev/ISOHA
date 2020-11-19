@@ -1,0 +1,14 @@
+:root {
+  --c1: #ffffff; /* blanc */
+  --c2: #000000; /* noir */
+  --c3: #404144; /* antracite */
+
+  /* CHARTE EFREI */
+  --c4: #6B8EC8; /* couleur 1 */
+  --c5: #405374; /* couleur 2 */
+  --c6: #b2b1d9; /* couleur 3*/
+
+  /* BOUTON */
+  --b1: #87314e;
+  --b2: #df405a;
+}

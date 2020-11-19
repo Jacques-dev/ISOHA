@@ -1,8 +1,5 @@
 
 
-<?php
-include("connexion.php");
-?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,7 +37,7 @@ include("connexion.php");
 
     </div>
 
-		
+
 
 		<script>
 

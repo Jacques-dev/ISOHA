@@ -22,8 +22,6 @@
 
 		<nav><?php include("Navigation.php"); ?></nav>
 
-
-
 		<div id="accueil">
 
 			<main id="main">

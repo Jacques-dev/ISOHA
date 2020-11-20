@@ -9,7 +9,7 @@
     if (isset($_SESSION["log"])) { ?>
       <a class="active" href="Accueil.php">Accueil</a>
       <a href="Profil.php">Mon Profil</a>
-      <a href="Apropos.php">A propos</a>
+      <a href="aPropos.html">A propos</a>
       <?php echo "<div id='nom'>Bonjour ".$_SESSION['log']."</div>";
     }
   ?>

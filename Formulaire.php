@@ -41,12 +41,12 @@
 
 				      	<p class='field'>
 				          <label for='user'>IDENTIFIANT</label>
-				          <input type="text" name="login" placeholder="..." id="id" required/>
+				          <input type="text" name="login" placeholder="Paul" id="id" required/>
 				      	</p>
 
 				    	  <p class='field'>
 					        <label for='pass'>MOT DE PASSE</label>
-					        <input type="password" name="password" placeholder="..." id="mdp" required/>
+					        <input type="password" name="password" placeholder="isoha" id="mdp" required/>
 				        </p>
 
 				      	<input type="submit" name="submit" value='Connexion' id="submit" />
@@ -57,12 +57,16 @@
 							if (isset($_POST["submit"])) {
 									if (!empty($_POST["login"]) && !empty($_POST["password"])) {
 
-											$result=$conn->query("select login from Profil");
-											while($ligne=$result->fetch()) {
-
-													if ($ligne[0] == $_POST['login']) {
-															$_SESSION['log'] = $ligne[0];
-													}
+											// $result=$conn->query("select login from Profil");
+											// while($ligne=$result->fetch()) {
+											//
+											// 		if ($ligne[0] == $_POST['login']) {
+											// 				$_SESSION['log'] = $ligne[0];
+											//
+											// 		}
+											// }
+											if ($_POST["login"] == "Paul" && $_POST["password"] == "isoha") {
+												$_SESSION['log'] = "Paul";
 											}
 									}
 							}

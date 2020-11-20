@@ -5,9 +5,14 @@
 
 <div id="navigation">
 
-  <a class="active" href="Accueil.php">Accueil</a>
-  <a href="Profil.php">Mon Profil</a>
-  <a href="Apropos.php">A propos</a>
+  <?php
+    if (isset($_SESSION["log"])) { ?>
+      <a class="active" href="Accueil.php">Accueil</a>
+      <a href="Profil.php">Mon Profil</a>
+      <a href="Apropos.php">A propos</a>
+      <?php echo "<div id='nom'>Bonjour ".$_SESSION['log']."</div>";
+    }
+  ?>
 
  <div id="logo">
    <img src="images/isoha.png" class="logo">

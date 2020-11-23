@@ -2,16 +2,16 @@
     <head>
         <meta charset="UTF8">
         <title>Qui sommes nous ?</title>
-
         <!-- nav CSS -->
-		<link rel="stylesheet" type="text/css" href="css/aPropos.css">
+        <link rel="stylesheet" type="text/css" href="css/aPropos.css">
+        
     </head>
 
     <body>
-
-        <div>
-            <img id="logo" src="images/isoha.png">
-            <h2>Qu'est ce que ISOHA ?</h2>
+        
+        <div id="app">
+            <img id="logo" v-bind:src="image">
+            <h2>{{ titre }}</h2>
             <p>
                 <br />
                 Depuis 2006, a été mis en œuvre le DMP ( Dossier médical personnel ) <br>
@@ -23,21 +23,39 @@
                 un retour sur les données fournies grâce à l’implémentation du machine learning. <br>
 
             </p>
-        </div>
-        
-        <div>
-        <h2>Présentation de l'equipe :  </h2>
-        <img id="photoGroupe" src="images/Trombinoscope.png">
+
+            <h2>{{ titre2 }} </h2>
+            <img id="photoGroupe" :src="image2">
             <p>
             Nous sommes 5 etudiants de L3 news a l'EFREI paris. <br>
             Dans le cadre d'un projet transvese nous avons fondé l'equipe Analytica. <br>
             Cette équipe a pour but d'elaborer le projer ISOHA (Intelligent Software for Online Health Analytics). <br>
                 <br />
-            Maître d’oeuvre et Architect : <strong>Jacques Tellier</strong> <br>
-            Chef Designer : <strong>Rémi Groise</strong> <br>
-            Responsable temps et avancés : <strong>Paul Cabon</strong> <br>
-            Responsable Machine Learning : <strong>Raphaël Jehl</strong> <br>
-            Maître d’ouvrage : <strong>Glory Chicaté</strong> <br>
             </p>
-        </div>
+
+            <ul>
+                <li v-for="membre in membres">{{ membre.texte }}</li>
+            </ul>
+        </div>  
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var app = new Vue ({
+                el: "#app",
+                
+                data: {
+                    titre: "Qu\'est ce que ISOHA ?",
+                    image: "images/isoha.png",
+
+                    titre2: "Présentation de l'equipe :  ",
+                    image2: "images/Trombinoscope.png",
+
+                    membres: [{nom : "Jacques" , texte : "Maître d’oeuvre et Architect : Jacques Tellier "},
+                    {nom : "Remi" , texte : "Chef Designer : Rémi Groise "},
+                    {nom : "Paul" , texte : "Responsable temps et avancés : Paul Cabon"},
+                    {nom : "Raphael" , texte : "Responsable Machine Learning : Raphaël Jehl"},
+                    {nom : "Glory" , texte : "Maître d’ouvrage : Glory Chicaté "}],
+                },
+            })
+        </script>
     </body>

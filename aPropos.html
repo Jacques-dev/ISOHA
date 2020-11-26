@@ -4,6 +4,7 @@
         <title>Qui sommes nous ?</title>
         <!-- nav CSS -->
         <link rel="stylesheet" type="text/css" href="css/aPropos.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         
     </head>
 
@@ -34,11 +35,11 @@
             </p>
 
             <ul>
-                <li v-for="membre in membres">{{ membre.texte }}</li>
+                        <li v-for="membre in membres">{{ membre.texte }}</li>
             </ul>
         </div>  
         
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+       
         <script>
             var app = new Vue ({
                 el: "#app",

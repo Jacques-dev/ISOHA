@@ -5,11 +5,11 @@
         <!-- nav CSS -->
         <link rel="stylesheet" type="text/css" href="css/aPropos.css">
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        
+
     </head>
 
     <body>
-        
+
         <div id="app">
             <img id="logo" v-bind:src="image">
             <h2>{{ titre }}</h2>
@@ -25,25 +25,25 @@
 
             </p>
 
-            <h2>{{ titre2 }} </h2>
+            <h2> {{ titre2 }} </h2>
             <img id="photoGroupe" :src="image2">
             <p>
-            Nous sommes 5 etudiants de L3 news a l'EFREI paris. <br>
-            Dans le cadre d'un projet transvese nous avons fondé l'equipe Analytica. <br>
-            Cette équipe a pour but d'elaborer le projer ISOHA (Intelligent Software for Online Health Analytics). <br>
+              Nous sommes 5 etudiants de L3 news a l'EFREI paris. <br>
+              Dans le cadre d'un projet transvese nous avons fondé l'equipe Analytica. <br>
+              Cette équipe a pour but d'elaborer le projer ISOHA (Intelligent Software for Online Health Analytics). <br>
                 <br />
             </p>
 
             <ul>
-                        <li v-for="membre in membres">{{ membre.texte }}</li>
+              <li v-for="membre in membres">{{ membre.texte }}</li>
             </ul>
-        </div>  
-        
-       
+        </div>
+
+
         <script>
             var app = new Vue ({
                 el: "#app",
-                
+
                 data: {
                     titre: "Qu\'est ce que ISOHA ?",
                     image: "images/isoha.png",

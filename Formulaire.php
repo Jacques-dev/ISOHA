@@ -2,7 +2,7 @@
 
 <?php
 // include("connexion.php");
-// session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -55,20 +55,21 @@
 
 							<?php
 							if (isset($_POST["submit"])) {
-									if (!empty($_POST["login"]) && !empty($_POST["password"])) {
-
-											// $result=$conn->query("select login from Profil");
-											// while($ligne=$result->fetch()) {
-											//
-											// 		if ($ligne[0] == $_POST['login']) {
-											// 				$_SESSION['log'] = $ligne[0];
-											//
-											// 		}
-											// }
-											if ($_POST["login"] == "Paul" && $_POST["password"] == "isoha") {
-												$_SESSION['log'] = "Paul";
-											}
-									}
+									// if (!empty($_POST["login"]) && !empty($_POST["password"])) {
+									//
+									// 		$result=$conn->query("select login from Profil");
+									// 		while($ligne=$result->fetch()) {
+									//
+									// 				if ($ligne[0] == $_POST['login']) {
+									// 						$_SESSION['log'] = $ligne[0];
+									//
+									// 				}
+									// 		}
+									// 		if ($_POST["login"] == "Paul" && $_POST["password"] == "isoha") {
+									// 			$_SESSION['log'] = "Paul";
+									// 		}
+									// }
+									$_SESSION['log'] = "Paul";
 							}
 
 							if (isset($_SESSION["log"])) {

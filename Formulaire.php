@@ -70,9 +70,9 @@ session_start();
 									// 		}
 									// }
 									$_SESSION['log'] = "Paul";
-							}
-
-							if (isset($_SESSION["log"])) {
+							// }
+							//
+							// if (isset($_SESSION["log"])) {
 								header('Location: Accueil.php');
 								exit();
 							} ?>

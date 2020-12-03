@@ -1,62 +1,135 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="UTF8">
-        <title>Qui sommes nous ?</title>
-        <!-- nav CSS -->
-        <link rel="stylesheet" type="text/css" href="css/aPropos.css">
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<html lang="en" >
+<head>
+  <meta charset="UTF8">
+  <title>Qui sommes nous ?</title>
+  <link rel="stylesheet" type="text/css" href="css/aPropos.css">
 
-    </head>
-
-    <body>
-
-        <div id="app">
-            <img id="logo" v-bind:src="image">
-            <h2>{{ titre }}</h2>
-            <p>
-                <br />
-                Depuis 2006, a été mis en œuvre le DMP ( Dossier médical personnel ) <br>
-                totalement dématérialisé, celui-ci permet en effet un échange rapide de l’information. <br>
-                <br />
-                L’objectif du projet est l’amélioration de l'environnement informatique des hôpitaux, <br>
-                en utilisant l’IA afin d’analyser des données et d’effectuer des pré-diagnostics. <br>
-                Ce site doit ainsi permettre de faciliter la tâche des personnels de santé et de permettre <br>
-                un retour sur les données fournies grâce à l’implémentation du machine learning. <br>
-
-            </p>
-
-            <h2> {{ titre2 }} </h2>
-            <img id="photoGroupe" :src="image2">
-            <p>
-              Nous sommes 5 etudiants de L3 news a l'EFREI paris. <br>
-              Dans le cadre d'un projet transvese nous avons fondé l'equipe Analytica. <br>
-              Cette équipe a pour but d'elaborer le projer ISOHA (Intelligent Software for Online Health Analytics). <br>
-                <br />
-            </p>
-
-            <ul>
-              <li v-for="membre in membres">{{ membre.texte }}</li>
-            </ul>
-        </div>
-
-
-        <script>
-            var app = new Vue ({
-                el: "#app",
-
-                data: {
-                    titre: "Qu\'est ce que ISOHA ?",
-                    image: "images/isoha.png",
-
-                    titre2: "Présentation de l'equipe :  ",
-                    image2: "images/Trombinoscope.png",
-
-                    membres: [{nom : "Jacques" , texte : "Maître d’oeuvre et Architect : Jacques Tellier "},
-                    {nom : "Remi" , texte : "Chef Designer : Rémi Groise "},
-                    {nom : "Paul" , texte : "Responsable temps et avancés : Paul Cabon"},
-                    {nom : "Raphael" , texte : "Responsable Machine Learning : Raphaël Jehl"},
-                    {nom : "Glory" , texte : "Maître d’ouvrage : Glory Chicaté "}],
-                },
-            })
-        </script>
-    </body>
+</head> 
+<body>
+  <header>
+    <img src="images/efrei.png" class="logo">
+  </header>
+  <div>
+    <img src="./images/banner.png" class="banner" alt="Baniere">
+  </div>
+  <div class="presentation">
+  <div >
+    <h2>Pourquoi ISOHA  ?</h2>
+    <br />
+    <p>
+      Depuis 2006, a été mis en œuvre le DMP ( Dossier médical personnel ) <br>
+      totalement dématérialisé, celui-ci permet en effet un échange rapide de l’information. <br>
+      <br />
+      L’objectif du projet est l’amélioration de l'environnement informatique des hôpitaux, <br>
+      en utilisant l’IA afin d’analyser des données et d’effectuer des pré-diagnostics. <br>
+      Ce site permet ainsi de faciliter la tâche des personnels de santé et <br>
+      un retour sur les données fournies grâce à l’implémentation du machine learning. <br>
+    </p>
+    <br />
+  </div>
+  <div>
+    <h2>L'equipe Analytics</h2>
+    <br/>
+    <p>
+      Nous sommes 5 etudiants de L3 news à l'EFREI paris de la promotion 2003. <br>
+      Dans le cadre d'un projet transvese nous avons fondé l'equipe Analytics. <br>
+      L'equipe Analytics a pour but d'elaborer le projer ISOHA (Intelligent Software for Online Health Analytics). <br>
+      <br />
+    </p>
+  </div>
+</div>
+    <div class="wrapper">
+      <ul class="team">
+        <li class="team-item">
+          <div class="profile profile_white">
+            <img
+              class="photoMembre"
+              src="images/default.jpg"
+            />
+            <div class="profile-contents">
+              <h2>Jacques Tellier <span>Maître d’oeuvre et Architect</span></h2>
+              <p>
+                Responsable de la réalisation globale du projet et des suivi des objectifs
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="team-item">
+          <div class="profile profile_yellow">
+            <img
+            class="photoMembre"
+            src="images/default.jpg"
+            />
+            <div class="profile-contents">
+              <h2>Rémi Groise<span>Chef Designer</span></h2>
+              <p>
+                Analyser le cahier des charges pour en déduire les fonctionnalités du projet
+                Identifier les différents types d’utilisateurs, rédiger les scénarios fonctionnels <br/>
+                Dessiner et proposer des maquettes IHM
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="team-item">
+          <div class="profile profile_green">
+            <img
+            class="photoMembre"
+            src="images/default.jpg"
+            />
+            <div class="profile-contents">
+              <h2>Paul Cabon<span>Responsable temps et avancés</span></h2>
+              <p>
+                Mettre en place un planning afin d’organiser le <br/>
+                travail et gérer le coût en heures des étapes <br/>
+                à réaliser en respectant les délais                 
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="team-item">
+          <div class="profile profile_blue">
+            <img
+            class="photoMembre"
+            src="images/default.jpg"
+            />
+            <div class="profile-contents">
+              <h2>Raphaël Jehl <span>Responsable Machine Learning</span></h2>
+              <p>
+                Mettre en place et diriger un système type <br/> machine learning
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="team-item">
+          <div class="profile profile_purple">
+            <img
+            class="photoMembre"
+            src="images/default.jpg"
+            />
+            <div class="profile-contents">
+              <h2>Glory Chicaté <span>Maître d’ouvrage</span></h2>
+              <p>
+                Identifier les différents types d’utilisateurs <br/> et rédiger les scénarios fonctionnels 
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="presentation">
+      <h2>Ce que nous voulons apporter au DMP</h2>
+      <br/>
+      <p>
+        Il existe déjà quelques systèmes de DMP dans le monde. <br/>
+        Alors il est normal de ce demmander ce que ISHOA peut apporter: <br/> <br/>
+        Le projet ISOHA a pour ambition d’ajouter du machine-Learning dans le traitement de l’information médicale. <br/>
+        En effet, ISHOA utilise l’intelligence artificielle pour émettre un premier diagnostic pour la maladie <br/>
+        d’Alzheimer. Ce processus est possible grâce à une IRM du cerveau du patient.
+      </p>
+    </div>
+  </body>
+</html>
+  
+</body>
+</html>

@@ -38,7 +38,7 @@ session_start();
 			        <button onclick="openLoginInfo();" class='b b-form i i-more' title='Mais Informações'></button>
 
 							<form method="post" action="Formulaire.php">
-
+	
 				      	<p class='field'>
 				          <label for='user'>IDENTIFIANT</label>
 				          <input type="text" name="login" placeholder="Paul" id="id" required/>
@@ -48,6 +48,16 @@ session_start();
 					        <label for='pass'>MOT DE PASSE</label>
 					        <input type="password" name="password" placeholder="isoha" id="mdp" required/>
 				        </p>
+					<!--
+						<div>
+							<br>
+							<label> &emsp;&ensp; Compte médecin
+						    	<input type="radio" name="radio" checked="checked"/>
+    						</label>
+    						<label> &emsp;&ensp; Compte patient
+      							<input type="radio" name="radio"/>
+							</label>
+						</div> -->
 
 				      	<input type="submit" name="submit" value='Connexion' id="submit" />
 

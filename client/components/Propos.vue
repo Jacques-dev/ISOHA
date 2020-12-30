@@ -36,7 +36,7 @@
       <div class="wrapper">
         <ul class="team">
           <li class="team-item">
-            <div class="profile profile_white">
+            <div class="profile">
               <img
                 class="photoMembre"
                 src="images/default.jpg"
@@ -50,7 +50,7 @@
             </div>
           </li>
           <li class="team-item">
-            <div class="profile profile_yellow">
+            <div class="profile">
               <img
               class="photoMembre"
               src="images/default.jpg"
@@ -66,7 +66,7 @@
             </div>
           </li>
           <li class="team-item">
-            <div class="profile profile_green">
+            <div class="profile">
               <img
               class="photoMembre"
               src="images/default.jpg"
@@ -82,7 +82,7 @@
             </div>
           </li>
           <li class="team-item">
-            <div class="profile profile_blue">
+            <div class="profile">
               <img
               class="photoMembre"
               src="images/default.jpg"
@@ -96,7 +96,7 @@
             </div>
           </li>
           <li class="team-item">
-            <div class="profile profile_purple">
+            <div class="profile">
               <img
               class="photoMembre"
               src="images/default.jpg"
@@ -205,7 +205,7 @@
   }
 
   .profile-contents p {
-    color: white;
+    color: var(--c2) !important;
     font-size: 0.75rem;
     width: 300px;
     line-height: 1.5;
@@ -230,6 +230,7 @@
     background-color: #222;
     position: relative;
     overflow: hidden;
+		color: rgb(22, 53, 136);
   }
 
   .profile:before {

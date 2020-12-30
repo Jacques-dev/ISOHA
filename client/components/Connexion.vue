@@ -15,12 +15,12 @@
 						<form v-if="!pasDeCompte" @submit.prevent="login">
 							<p class='field'>
 								<label for='email'>IDENTIFIANT (email)</label>
-								<input type="text" v-model="editLogin.email" placeholder="Paul" name="email" required>
+								<input type="text" v-model="editLogin.email" placeholder="..." name="email" id="email" required>
 							</p>
 
 							<p class='field'>
 								<label for='password'>MOT DE PASSE</label>
-								<input type="text" v-model="editLogin.password" placeholder="isoha" name="password" required>
+								<input type="text" v-model="editLogin.password" placeholder="..." name="password" required>
 							</p>
 
 							<button type="submit" name="submit" id="login"/>Connexion</button>
@@ -45,7 +45,7 @@
 
 							<p class='field'>
 								<label for='email'>EMAIL</label>
-								<input type="text" v-model="editRegister.email" placeholder="Entrez votre Email" name="email" required>
+								<input type="text" v-model="editRegister.email" placeholder="Entrez votre Email" name="email" id="email_register" equired>
 							</p>
 
 							<p class='field'>
@@ -91,12 +91,34 @@
 					this.pasDeCompte = true
 				}
 			},
-			login () {
-
-			},
 			register () {
-
-			}
+        var email = document.getElementById("email_register").value;
+        if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
+          this.$emit('register', this.editRegister);
+				} else if (email.match(/(medecin-)+[a-z]+(-)+[a-z]+(-efrei_2023)/gm)) {// medecin-jacques-tellier-efrei_2023
+					this.$emit('register', this.editRegister);
+        } else {
+					asAlertMsg({
+            type: "warning",
+            title: "Attention",
+            message: "Le mail que vous avez entré n'est pas correct"
+          })
+				}
+      },
+      login () {
+        var email = document.getElementById("email").value;
+        if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i) ) {
+          this.$emit('login', this.editLogin);
+        } else if (email.match(/(medecin-)+[a-z]+(-)+[a-z]+(-efrei_2023)/gm)) {// medecin-jacques-tellier-efrei_2023
+          this.$emit('login', this.editLogin);
+        } else {
+					asAlertMsg({
+            type: "warning",
+            title: "Attention",
+            message: "Le mail que vous avez entré n'est pas correct"
+          })
+				}
+      }
 		}
 	}
 </script>

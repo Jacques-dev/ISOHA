@@ -103,6 +103,13 @@ body {
   font-size: 17px;
 }
 
+.topnav-middle {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .topnav-right {
   float: right;
 }

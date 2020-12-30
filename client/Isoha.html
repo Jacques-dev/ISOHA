@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mon magasin en ligne 100% bons plans</title>
+    <title>ISOHA</title>
     <!-- Load Vue followed by Vue Router -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
@@ -50,10 +50,13 @@
         <router-link type="button" class="btn-13 custom-btn nav-link active" to='/'>Accueil</router-link>
         <router-link type="button" class="btn-13 custom-btn nav-link" to='/propos'>A propos</router-link>
 
+        <div class="topnav-middle">
+          <h3 v-if="user.email" style="color: var(--b3); cursor: default">{{ user.prenom }} {{ user.nom }}</h3>
+        </div>
+
         <div class="topnav-right">
-          <h3 class="nav-link" v-if="user.id" style="color: blue; cursor: default">Bonjour {{ user.nom }}</h3>
-          <router-link class="nav-link btn-13 custom-btn " v-if="user.id" to='/profil'>Profil</router-link>
-          <router-link class="nav-link btn-13 custom-btn " v-if="user.id" to='/deconnexion'>Déconnexion</router-link>
+          <router-link class="nav-link btn-13 custom-btn " v-if="user.email" to='/profil'>Profil</router-link>
+          <router-link class="nav-link btn-13 custom-btn " v-if="user.email" to='/deconnexion'>Déconnexion</router-link>
           <router-link class="nav-link btn-13 custom-btn " v-else to='/connexion'>Connexion</router-link>
         </div>
       </div>

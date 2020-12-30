@@ -6,41 +6,59 @@
 				<div class='box-login-tab'></div>
 				<div class='box-login-title'>
 					<div class='i i-login'></div>
-					<h2>Identification</h2>
+					<h2 v-if="!pasDeCompte">Identification</h2>
+					<h2 v-else>Enregistrement</h2>
 				</div>
 				<div class='box-login'>
 					<div class='fieldset-body' id='login_form'>
-						<button onclick="openLoginInfo();" class='b b-form i i-more' title='Mais Informações'></button>
 
-						<form method="post" action="Formulaire.php">
-
+						<form v-if="!pasDeCompte" @submit.prevent="login">
 							<p class='field'>
-								<label for='user'>IDENTIFIANT</label>
-								<input type="text" name="login" placeholder="Paul" id="id" required/>
+								<label for='email'>IDENTIFIANT (email)</label>
+								<input type="text" v-model="editLogin.email" placeholder="Paul" name="email" required>
 							</p>
 
 							<p class='field'>
-								<label for='pass'>MOT DE PASSE</label>
-								<input type="password" name="password" placeholder="isoha" id="mdp" required/>
+								<label for='password'>MOT DE PASSE</label>
+								<input type="text" v-model="editLogin.password" placeholder="isoha" name="password" required>
 							</p>
 
-							<input type="submit" name="submit" value='Connexion' id="submit" />
+							<button type="submit" name="submit" id="login"/>Connexion</button>
+							<button @click="switchForm()" title="S'enregistrer" class="switchForm">Je n'ai pas de compte</button>
+						</form>
 
+						<form v-else @submit.prevent="register">
+							<p class='field'>
+								<label for='nom'>NOM</label>
+								<input type="text" v-model="editRegister.nom" name="nom" placeholder="Entrer votre nom" required/>
+							</p>
+
+							<p class='field'>
+								<label for='prenom'>PRENOM</label>
+								<input type="text" v-model="editRegister.prenom" name="prenom" placeholder="Entrer votre prénom" required/>
+							</p>
+
+							<p class='field'>
+								<label for='telephone'>TELEPHONE</label>
+								<input type="text" v-model="editRegister.telephone" name="telephone" placeholder="xx.xx.xx.xx.xx" required/>
+							</p>
+
+							<p class='field'>
+								<label for='email'>EMAIL</label>
+								<input type="text" v-model="editRegister.email" placeholder="Entrez votre Email" name="email" required>
+							</p>
+
+							<p class='field'>
+								<label for='password'>MOT DE PASSE</label>
+								<input type="text" v-model="editRegister.password" placeholder="Entrez votre mot de passe" name="password" required>
+							</p>
+
+							<button type="submit" name="submit" id="register"/>S'enregistrer</button>
+							<button @click="switchForm()" title="S'enregistrer" class="switchForm">J'ai un compte</button>
 						</form>
 
 					</div>
 				</div>
-			</div>
-			<div class='box-info'>
-				<p>
-					<button onclick="closeLoginInfo();" class='b b-info i i-left' title='Back to Sign In'></button>
-					<h3>Besoin d'aide?</h3>
-				</p>
-				<div class='line-wh'></div>
-				<button onclick="" class='b-support' title='Forgot Password?'>Mot de passe oublié</button>
-				<button onclick="" class='b-support' title='Contact Support'>Nous contacter</button>
-				<div class='line-wh'></div>
-				<button onclick="" class='b-cta' title='Sign up now!'>Créer un compte</button>
 			</div>
 		</div>
 
@@ -51,11 +69,34 @@
 	module.exports = {
 		data () {
 			return {
-
+				editRegister:{
+          email:'',
+          password:'',
+          nom:'',
+          prenom:'',
+          telephone:''
+        },
+        editLogin:{
+          email:'',
+          password:''
+        },
+				pasDeCompte: false
 			}
 		},
 		methods: {
+			switchForm() {
+				if (this.pasDeCompte) {
+					this.pasDeCompte = false
+				} else {
+					this.pasDeCompte = true
+				}
+			},
+			login () {
 
+			},
+			register () {
+
+			}
 		}
 	}
 </script>
@@ -156,7 +197,6 @@
 	.box-form {
 	  width: 320px;
 	  position: relative;
-	  z-index: 1;
 	}
 
 	.box-login-tab {
@@ -165,18 +205,10 @@
 	  background: #fdfdfd;
 	  position: relative;
 	  float: left;
-	  z-index: 1;
 
 	  -webkit-border-radius: 6px 6px 0 0;
 	  -moz-border-radius: 6px 6px 0 0;
 	  border-radius: 6px 6px 0 0;
-
-	  -webkit-transform: perspective(5px) rotateX(0.93deg) translateZ(-1px);
-	  transform: perspective(5px) rotateX(0.93deg) translateZ(-1px);
-	  -webkit-transform-origin: 0 0;
-	  transform-origin: 0 0;
-	  -webkit-backface-visibility: hidden;
-	  backface-visibility: hidden;
 
 	  -webkit-box-shadow: 15px -15px 30px rgba(0, 0, 0, 0.32);
 	  -moz-box-shadow: 15px -15px 30px rgba(0, 0, 0, 0.32);
@@ -188,7 +220,6 @@
 	  height: 40px;
 	  position: absolute;
 	  float: left;
-	  z-index: 2;
 	}
 
 	.box-login {
@@ -198,7 +229,6 @@
 	  background: #fdfdfd;
 	  text-align: center;
 	  overflow: hidden;
-	  z-index: 2;
 
 	  -webkit-border-top-right-radius: 6px;
 	  -webkit-border-bottom-left-radius: 6px;
@@ -215,15 +245,15 @@
 	  box-shadow: 15px 30px 30px rgba(0, 0, 0, 0.32);
 	}
 
-	.box-info {
-	  width: 260px;
-	  top: 60px;
-	  position: absolute;
-	  right: -5px;
+	.box-register {
+	  width: 320px;
+		position: absolute;
+	  top: 50%;
+	  left: 50%;
 	  padding: 15px 15px 15px 30px;
 	  background-color: rgba(255, 255, 255, 0.6);
 	  border: 1px solid rgba(255, 255, 255, 0.2);
-	  z-index: 0;
+	  z-index: 2;
 
 	  -webkit-border-radius: 6px;
 	  -moz-border-radius: 6px;
@@ -249,10 +279,6 @@
 
 	a {
 	  text-decoration: none;
-	}
-
-	button:focus {
-	  outline: 0;
 	}
 
 	.b {
@@ -326,7 +352,7 @@
 	  margin-bottom: 2px;
 	}
 
-	label {
+	#login_form label {
 	  float: left;
 	  width: 100%;
 	  top: 0px;
@@ -337,14 +363,14 @@
 	  line-height: 1.5;
 	}
 
-	label.checkbox {
+	#login_form label.checkbox {
 	  float: left;
 	  padding: 5px 20px;
 	  line-height: 1.7;
 	}
 
-	input[type="text"],
-	input[type="password"] {
+	#login_form input,
+	#login_form input {
 	  width: 100%;
 	  height: 32px;
 	  padding: 0px 10px;
@@ -364,13 +390,13 @@
 	    1px 1px 0px rgba(255, 255, 255, 1);
 	}
 
-	input[type="text"]:focus,
-	input[type="password"]:focus {
+	#login_form input:focus,
+	#login_form input:focus {
 	  background-color: #f8f8c6;
 	  outline: none;
 	}
 
-	input[type="submit"] {
+	#login, #register {
 	  width: 100%;
 	  height: 48px;
 	  margin-top: 24px;
@@ -387,12 +413,29 @@
 	  cursor: pointer;
 	}
 
-	input[type="submit"]:hover {
+	#login_form .switchForm {
+		width: 100%;
+	  height: 48px;
+	  margin-top: 5px;
+	  padding: 0px 20px;
+	  font-family: "Quicksand", sans-serif;
+	  font-weight: 700;
+	  font-size: 18px;
+	  color: #fff;
+	  line-height: 40px;
+	  text-align: center;
+	  background-color: var(--b3);
+	  border: 1px var(--b3) solid;
+	  opacity: 1;
+	  cursor: pointer;
+	}
+
+	#login_form button:hover {
 	  background-color: var(--b2);
 	  border: 1px var(--b2) solid;
 	}
 
-	input[type="submit"]:focus {
+	#login_form button:focus {
 	  outline: none;
 	}
 
@@ -410,24 +453,6 @@
 	  -moz-animation: bounceIn 0.6s linear;
 	  -o-animation: bounceIn 0.6s linear;
 	  animation: bounceIn 0.6s linear;
-	}
-
-	/*--------------------
-	Transitions
-	---------------------*/
-
-	.box-form,
-	.box-info,
-	.b,
-	.b-support,
-	.b-cta,
-	input[type="submit"],
-	p.field span.i {
-	  -webkit-transition: all 0.3s;
-	  -moz-transition: all 0.3s;
-	  -ms-transition: all 0.3s;
-	  -o-transition: all 0.3s;
-	  transition: all 0.3s;
 	}
 
 </style>

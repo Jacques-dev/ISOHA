@@ -1,18 +1,35 @@
 
 <template>
 	<div id="accueil">
+		<div class="container-fluid">
 
-		<main id="main">
-			<form method="post" enctype="multipart/form-data">
+			<div class="row h-100 d-flex align-items-center">
 
-				<label for="file" id="button">
-					<i class="fas fa-search"></i>
-				</label>
-				<input type="file" name="file" id="file" accept=".jpg, .jpeg, .png" required/>
+				<video autoplay loop controls muted id="video" class="col-sm-4" align="center">
+		    	<source src="../videos/video.mp4" type="video/mp4">
+				</video>
 
-			</form>
-		</main>
+				<div class="col-sm-1 ml-sm-auto mr-sm-auto column_design" align="center">
+					<form method="post" enctype="multipart/form-data">
 
+						<label for="file" id="button">
+							<i class="fas fa-search"></i>
+						</label>
+						<input type="file" name="file" id="file" accept=".jpg, .jpeg, .png" required/>
+
+					</form>
+				</div>
+
+				<div class="col-sm-4" align="center">
+					<div class="column_design">
+						les résultats de l'algo ici
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<img src="../images/efrei.png" id="efrei">
 	</div>
 </template>
 
@@ -35,22 +52,33 @@
 		margin: 0;
 	}
 
-	main {
-	  position: absolute;
-	  top: 25vh;
-	  left: 50%;
-	  transform: translateX(-50%);
+	#accueil #efrei {
+		position: absolute;
+		bottom: 25px;
+		right: 25px;
+		width: 200px;
+	}
+
+	#accueil #video {
+		z-index: 3;
+	}
+
+	#accueil .column_design {
+		padding: 25px 0;
 	  background: var(--c1);
 	  border-radius: 15px;
-	  padding: 25px;
 	  box-shadow: 0px 0px 5px 3px black;
 	}
 
-	input[type="file"] {
+	#accueil form {
+	  margin: 0;
+	}
+
+	#accueil input[type="file"] {
 	  display: none;
 	}
 
-	#button {
+	#accueil #button {
 	  position: relative;
 	  display: table-cell;
 	  vertical-align: middle;
@@ -66,7 +94,7 @@
 	  transition: 0.5s;
 	}
 
-	#button::before {
+	#accueil #button::before {
 	  content: "";
 	  position: absolute;
 	  top: 0;
@@ -81,18 +109,18 @@
 	  z-index: -1;
 	}
 
-	#button:hover::before {
+	#accueil #button:hover::before {
 	  transform: scale(1.1);
 	  box-shadow: 0 0 15px var(--c4);
 	}
 
-	#button:hover {
+	#accueil #button:hover {
 	  color: var(--c4);
 	  box-shadow: 0 0 5px var(--c4);
 	  text-shadow: 0 0 5px var(--c4);
 	}
 
-	#button i {
+	#accueil #button i {
 	  font-size: 50px;
 	}
 

@@ -1,15 +1,17 @@
 const Accueil = window.httpVueLoader('./components/Accueil.vue')
 const Propos = window.httpVueLoader('./components/Propos.vue')
-const Profil = window.httpVueLoader('./components/Profil.vue')
 const Connexion = window.httpVueLoader('./components/Connexion.vue')
 const Deconnexion = window.httpVueLoader('./components/Deconnexion.vue')
+const Patient = window.httpVueLoader('./components/Patient.vue')
+const Medecin = window.httpVueLoader('./components/Medecin.vue')
 
 const routes = [
   { path: '/', component: Accueil },
   { path: '/propos', component: Propos },
-  { path: '/profil', component: Profil },
   { path: '/connexion', component: Connexion },
-  { path: '/deconnexion', component: Deconnexion }
+  { path: '/deconnexion', component: Deconnexion },
+  { path: '/patient', component: Patient },
+  { path: '/medecin', component: Medecin },
 ]
 
 const router = new VueRouter({

@@ -55,7 +55,8 @@
         </div>
 
         <div class="topnav-right">
-          <router-link class="nav-link btn-13 custom-btn " v-if="user.email" to='/profil'>Profil</router-link>
+          <router-link class="nav-link btn-13 custom-btn " v-if="user.medecin" to='/medecin'>Profil</router-link>
+          <router-link class="nav-link btn-13 custom-btn " v-if="user.patient" to='/patient'>Profil</router-link>
           <router-link class="nav-link btn-13 custom-btn " v-if="user.email" to='/deconnexion'>Déconnexion</router-link>
           <router-link class="nav-link btn-13 custom-btn " v-else to='/connexion'>Connexion</router-link>
         </div>

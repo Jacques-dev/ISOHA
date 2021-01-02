@@ -104,6 +104,11 @@
             message: "Le mail que vous avez entré n'est pas correct"
           })
 				}
+				if (this.pasDeCompte) {
+					this.pasDeCompte = false
+				} else {
+					this.pasDeCompte = true
+				}
       },
       login () {
         var email = document.getElementById("email").value;

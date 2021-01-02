@@ -50,7 +50,8 @@
       <div class="trapezoid2"></div>
 
       <div class="topnav">
-        <router-link type="button" class="btn-13 custom-btn nav-link active" to='/'>Accueil</router-link>
+        <router-link type="button" class="btn-13 custom-btn nav-link active" v-if="medecin" to='/'>Accueil</router-link>
+        <router-link type="button" class="btn-13 custom-btn nav-link" v-if="medecin" to='/hopitale'>Nos Patients</router-link>
         <router-link type="button" class="btn-13 custom-btn nav-link" to='/propos'>A propos</router-link>
 
 
@@ -59,8 +60,8 @@
         </div>
 
         <div class="topnav-right">
-          <router-link class="nav-link btn-13 custom-btn " v-if="user.medecin" to='/medecin'>Profil</router-link>
-          <router-link class="nav-link btn-13 custom-btn " v-if="user.patient" to='/patient'>Profil</router-link>
+          <router-link class="nav-link btn-13 custom-btn " v-if="medecin" to='/medecin'>Profil</router-link>
+          <router-link class="nav-link btn-13 custom-btn " v-if="patient" to='/patient'>Profil</router-link>
           <router-link class="nav-link btn-13 custom-btn " v-if="user.email" to='/deconnexion'>Déconnexion</router-link>
           <router-link class="nav-link btn-13 custom-btn " v-else to='/connexion'>Connexion</router-link>
         </div>
@@ -70,8 +71,11 @@
       <main>
         <router-view
           :user="user"
+          :recherches="recherches"
           @update-profile="updateProfile"
           @register="register"
+          @ajouter-patient="register"
+          @chercher-patient="chercherPatient"
           @login="login"
           @logout="logout"
         ></router-view>

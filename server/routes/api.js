@@ -13,11 +13,17 @@
   client.connect()
 
   router.post('/register', async (req, res) => {
+    const nom = req.body.nom
+    const prenom = req.body.prenom
     const email = req.body.email
     const password = req.body.password
-    const prenom = req.body.prenom
-    const nom = req.body.nom
     const telephone = req.body.telephone
+    const dateNaissance = req.body.dateNaissance
+    const age = req.body.age
+    const taille = req.body.taille
+    const poids = req.body.poids
+    const sexe = req.body.sexe
+    const profession = req.body.profession
 
     const sql = "SELECT * FROM utilisateur WHERE email=$1"
 
@@ -33,18 +39,24 @@
       var insert_patient_medecin
 
       if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i) ) {
-        insert_patient_medecin = "INSERT INTO patient (email, nom, prenom, telephone) VALUES ($1, $2, $3, $4)"
+        insert_patient_medecin = "INSERT INTO patient (nom, prenom, email, telephone, datenaissance, age, taille, poids, sexe, profession) "
+        insert_patient_medecin += "VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)"
+        await client.query({
+          text: insert_patient_medecin,
+          values: [nom, prenom, email, telephone, dateNaissance, age, taille, poids, sexe, profession]
+        })
+        res.send()
+
       } else if (email.match(/(medecin-)+[a-z]+(-)+[a-z]+(-efrei_2023)/gm)) {
         insert_patient_medecin = "INSERT INTO medecin (email, nom, prenom, telephone) VALUES ($1, $2, $3, $4)"
+        await client.query({
+          text: insert_patient_medecin,
+          values: [email, nom, prenom, telephone]
+        })
+        res.send()
       } else {
         res.status(404).json({ message: "this email is not correct" })
       }
-
-      await client.query({
-        text: insert_patient_medecin,
-        values: [email, nom, prenom, telephone]
-      })
-      res.send()
 
       const hash = await bcrypt.hash(password, 10)
 
@@ -76,26 +88,46 @@
         var select_patient_medecin
 
         if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i) ) {
-          select_patient_medecin = "SELECT email, nom, prenom, telephone FROM patient WHERE email=$1"
+          select_patient_medecin = "SELECT nom, prenom, email, telephone, datenaissance, age, taille, poids, sexe, profession FROM patient WHERE email=$1"
+
+          const result2 = await client.query({
+            text: select_patient_medecin,
+            values: [email]
+          })
+
           req.session.patient = true
+          req.session.userName = result2.rows[0].nom
+          req.session.userFirstName = result2.rows[0].prenom
+          req.session.userEmail = result2.rows[0].email
+          req.session.userTelephone = result2.rows[0].telephone
+          req.session.userDateNaissance = result2.rows[0].dateNaissance
+          req.session.userAge = result2.rows[0].age
+          req.session.userTaille = result2.rows[0].taille
+          req.session.userPoids = result2.rows[0].poids
+          req.session.userSexe = result2.rows[0].sexe
+          req.session.userProfession = result2.rows[0].profession
+
+          res.send()
+
         } else if (email.match(/(medecin-)+[a-z]+(-)+[a-z]+(-efrei_2023)/gm)) {
           select_patient_medecin = "SELECT email, nom, prenom, telephone FROM medecin WHERE email=$1"
+
+          const result2 = await client.query({
+            text: select_patient_medecin,
+            values: [email]
+          })
+
           req.session.medecin = true
+          req.session.userName = result2.rows[0].nom
+          req.session.userFirstName = result2.rows[0].prenom
+          req.session.userEmail = result2.rows[0].email
+          req.session.userTelephone = result2.rows[0].telephone
+
+          res.send()
+
         } else {
           res.status(404).json({ message: "this email is not correct" })
         }
-
-        const result2 = await client.query({
-          text: select_patient_medecin,
-          values: [email]
-        })
-
-        req.session.userName = result2.rows[0].nom
-        req.session.userEmail = result2.rows[0].email
-        req.session.userFirstName = result2.rows[0].prenom
-        req.session.userTelephone = result2.rows[0].telephone
-
-        res.send()
 
       } else {
         res.status(400).json({ message: "wrong password" })
@@ -107,23 +139,36 @@
   })
 
   router.post('/logout', (req, res) => {
-    console.log('JE SUIS LA')
     req.session.patient = null
     req.session.medecin = null
     req.session.userName = null
-    req.session.userEmail = null
     req.session.userFirstName = null
+    req.session.userEmail = null
     req.session.userTelephone = null
+    req.session.userDateNaissance = null
+    req.session.userAge = null
+    req.session.userTaille = null
+    req.session.userPoids = null
+    req.session.userSexe = null
+    req.session.userProfession = null
 
+    user = {
+      nom: req.session.userName,
+      prenom: req.session.userFirstName,
+      email: req.session.userEmail,
+      telephone: req.session.userTelephone,
+      dateNaissance: req.session.userDateNaissance,
+      age: req.session.userAge,
+      taille: req.session.userTaille,
+      poids: req.session.userPoids,
+      sexe: req.session.userSexe,
+      profession: req.session.userProfession,
+    }
     const log = {
       patient: req.session.patient,
       medecin: req.session.medecin,
-      nom: req.session.userName,
-      email: req.session.userEmail,
-      prenom: req.session.userFirstName,
-      telephone: req.session.userTelephone,
+      user: user
     }
-
     res.json(log)
   })
 
@@ -131,13 +176,33 @@
 
     if (req.session.userEmail) {
 
+      var user
+      if (req.session.patient) {
+        user = {
+          nom: req.session.userName,
+          prenom: req.session.userFirstName,
+          email: req.session.userEmail,
+          telephone: req.session.userTelephone,
+          dateNaissance: req.session.userDateNaissance,
+          age: req.session.userAge,
+          taille: req.session.userTaille,
+          poids: req.session.userPoids,
+          sexe: req.session.userSexe,
+          profession: req.session.userProfession,
+        }
+      } else {
+        user = {
+          nom: req.session.userName,
+          prenom: req.session.userFirstName,
+          email: req.session.userEmail,
+          telephone: req.session.userTelephone,
+        }
+      }
+
       const log = {
         patient: req.session.patient,
         medecin: req.session.medecin,
-        nom: req.session.userName,
-        email: req.session.userEmail,
-        prenom: req.session.userFirstName,
-        telephone: req.session.userTelephone,
+        user: user
       }
       res.json(log)
     } else {
@@ -176,6 +241,27 @@
     })
 
     res.send()
+  })
+
+  router.post('/recherche', async (req, res) => {
+    const nom = req.body.nom
+    const prenom = req.body.prenom
+
+    sql = "SELECT nom, prenom, email, telephone FROM patient WHERE nom = $1 AND prenom = $2"
+
+    const result = await client.query({
+      text: sql,
+      values: [nom, prenom]
+    })
+
+    const log = {
+      nom: result.rows[0].nom,
+      prenom: result.rows[0].prenom,
+      email: result.rows[0].email,
+      telephone: result.rows[0].telephone,
+    }
+
+    res.json(log)
   })
 
 module.exports = router

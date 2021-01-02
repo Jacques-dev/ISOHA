@@ -159,6 +159,10 @@
     height: 50vh;
   }
 
+	#propos  {
+    margin-bottom: 150px
+  }
+
   #propos .logo {
     position: absolute;
     top: 75px;

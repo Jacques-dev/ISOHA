@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row h-100 d-flex align-items-center">
 
-        <div class="col-sm-3 ml-sm-auto mr-sm-auto" id="colonne-gauche">
+        <div class="col-sm-4 ml-sm-auto mr-sm-auto" id="colonne-gauche">
           <div class="container-fluid">
 
             <div class="row">
@@ -21,15 +21,96 @@
 
             <div class="row content">
               <div class="col-sm-12">
-                <ul>
-                  <li>Nom :</li>
-                  <li>Prénom :</li>
-                  <li>Identifiant :</li>
-                  <li>Date de naissance :</li>
-                  <li>Taille :</li>
-                  <li>Poids :</li>
-                  <li>Sexe :</li>
-                </ul>
+                <form id="formulaire_modification_profil" @submit.prevent="sendEditProfil">
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Nom :
+                    </div>
+                    <div class="col-sm-5 mr-sm-auto">
+                      <input name="nom" :placeholder="user.nom" type="text" v-model="editingProfile.nom">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Prenom :
+                    </div>
+                    <div class="col-sm-5 mr-sm-auto">
+                      <input name="prenom" :placeholder="user.prenom" type="text" v-model="editingProfile.prenom">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Email :
+                    </div>
+                    <div class="col-sm-5 mr-sm-auto">
+                      <input name="email" :placeholder="user.email" type="text" v-model="editingProfile.email">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Telephone :
+                    </div>
+                    <div class="col-sm-5 mr-sm-auto">
+                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Taille :
+                    </div>
+                    <div class="col-sm-5 mr-sm-auto">
+                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Poids :
+                    </div>
+                    <div class="col-sm-5 mr-sm-auto">
+                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Date de naissance :
+                    </div>
+                    <div class="col-sm-5 mr-sm-auto">
+                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Age :
+                    </div>
+                    <div class="col-sm-5 mr-sm-auto">
+                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Profession :
+                    </div>
+                    <div class="col-sm-5 mr-sm-auto">
+                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-sm-12" align="center">
+                      <button type="submit" class="slide_page_commander">Modifier</button>
+                    </div>
+                  </div>
+
+                </form>
               </div>
             </div>
 
@@ -41,7 +122,7 @@
 
             <div class="row">
               <div class="col-sm-12">
-                <h2>Mon profil</h2>
+                <h2>Mon radios</h2>
               </div>
             </div>
 

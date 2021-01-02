@@ -100,7 +100,7 @@
           req.session.userFirstName = result2.rows[0].prenom
           req.session.userEmail = result2.rows[0].email
           req.session.userTelephone = result2.rows[0].telephone
-          req.session.userDateNaissance = result2.rows[0].dateNaissance
+          req.session.userDateNaissance = result2.rows[0].datenaissance
           req.session.userAge = result2.rows[0].age
           req.session.userTaille = result2.rows[0].taille
           req.session.userPoids = result2.rows[0].poids
@@ -214,33 +214,83 @@
     var nom = req.body.nom
     var prenom = req.body.prenom
     var email = req.body.email
-    var telephone = req.body.telephone
+    var dateNaissance = req.body.dateNaissance
 
-    if (!nom) {
-      nom = req.session.userName
-    }
-    if (!prenom) {
-      prenom = req.session.userFirstName
-    }
-    if (!email) {
-      email = req.session.userEmail
-    }
-    if (!telephone) {
-      telephone = req.session.userTelephone
+    var conditionEmail, conditionDate
+    if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i) || !email) {
+      conditionEmail = true
+    } else {
+      conditionEmail = false
     }
 
-    req.session.userName = nom
-    req.session.userFirstName = prenom
-    req.session.userEmail = email
-    req.session.userTelephone = telephone
+    if (dateNaissance.match(/([0-9]{2}[\/])([0-9]{2}[\/])([0-9]{4})+/i) || !dateNaissance) {
+      conditionDate = true
+    } else {
+      conditionDate = false
+    }
 
-    const update = "UPDATE users SET nom = $1, prenom = $2, email = $3, telephone = $4 WHERE email=$3"
-    const result = await client.query({
-      text: update,
-      values: [nom, prenom, email, telephone]
-    })
+    if (conditionEmail && conditionDate) {
+      var telephone = req.body.telephone
+      var age = req.body.age
+      var taille = req.body.taille
+      var poids = req.body.poids
+      var sexe = req.body.sexe
+      var profession = req.body.profession
 
-    res.send()
+      if (!nom) {
+        nom = req.session.userName
+      }
+      if (!prenom) {
+        prenom = req.session.userFirstName
+      }
+      if (!email) {
+        email = req.session.userEmail
+      }
+      if (!telephone) {
+        telephone = req.session.userTelephone
+      }
+      if (!dateNaissance) {
+        dateNaissance = req.session.userDateNaissance
+      }
+      if (!age) {
+        age = req.session.userAge
+      }
+      if (!taille) {
+        taille = req.session.userTaille
+      }
+      if (!poids) {
+        poids = req.session.userPoids
+      }
+      if (!sexe) {
+        sexe = req.session.userSexe
+      }
+      if (!profession) {
+        profession = req.session.userProfession
+      }
+
+      req.session.userName = nom
+      req.session.userFirstName = prenom
+      req.session.userEmail = email
+      req.session.userTelephone = telephone
+      req.session.userDateNaissance = dateNaissance
+      req.session.userAge = age
+      req.session.userTaille = taille
+      req.session.userPoids = poids
+      req.session.userSexe = sexe
+      req.session.userProfession = profession
+
+      var update = "UPDATE patient SET nom = $1, prenom = $2, email = $3, telephone = $4, "
+      update += "datenaissance = $5, age = $6, taille = $7, poids = $8, sexe = $9, profession = $10 "
+      update += "WHERE email=$3"
+      const result = await client.query({
+        text: update,
+        values: [nom, prenom, email, telephone, dateNaissance, age, taille, poids, sexe, profession]
+      })
+
+      res.send()
+    } else {
+      res.status(404).json({ message: "email or dateNaissance correct" })
+    }
   })
 
   router.post('/recherche', async (req, res) => {

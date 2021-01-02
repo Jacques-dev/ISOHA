@@ -99,13 +99,61 @@ var app = new Vue({
       const res = await axios.post('/api/recherche/', 'nom=' + patient.nom + '&prenom=' + patient.prenom)
       this.recherches.push(res.data)
     },
-    async updateProfile (newUser) {
-      var route = 'nom=' + user.nom + '&prenom=' + user.prenom + '&email=' + user.email + '&password=' + user.password + '&telephone=' + user.telephone
-      route += '&dateNaissance=' + user.dateNaissance + '&age=' + user.age + '&taille=' + user.taille + '&poids=' + user.poids + '&sexe=' + user.sexe
-      route += '&profession=' + user.profession
-      await axios.put('/api/user/', route)
-      const res = await axios.get('/api/me')
-      this.user = res.data.user
+    async updateProfile (user) {
+      try {
+        var route = 'nom=' + user.nom + '&prenom=' + user.prenom + '&email=' + user.email + '&password=' + user.password + '&telephone=' + user.telephone
+        route += '&dateNaissance=' + user.dateNaissance + '&age=' + user.age + '&taille=' + user.taille + '&poids=' + user.poids + '&sexe=' + user.sexe
+        route += '&profession=' + user.profession
+        await axios.put('/api/user/', route)
+        const res = await axios.get('/api/me')
+        this.user = res.data.user
+      } catch (e) {
+        asAlertMsg({
+          type: "warning",
+          title: "Attention",
+          message: "Email ou date de naissance incorrect"
+        })
+      }
+      router.push('/patient')
     }
   }
 })
+
+// Hide Header on on scroll down
+var didScroll;
+var lastScrollTop = 0;
+var delta = 5;
+var navbarHeight = $('footer').outerHeight();
+
+$(window).scroll(function(event){
+    didScroll = true;
+});
+
+setInterval(function() {
+  if (didScroll) {
+      hasScrolled();
+      didScroll = false;
+  }
+}, 150);
+
+function hasScrolled() {
+  var st = $(this).scrollTop();
+
+  // Make sure they scroll more than delta
+  if(Math.abs(lastScrollTop - st) <= delta)
+      return;
+
+  // If they scrolled down and are past the navbar, add class .nav-up.
+  // This is necessary so you never see what is "behind" the navbar.
+  if (st > lastScrollTop && st > navbarHeight){
+    // Scroll Down
+    $('footer').removeClass('nav-down').addClass('nav-up');
+  } else {
+    // Scroll Up
+    if(st + $(window).height() < $(document).height()) {
+      $('footer').removeClass('nav-up').addClass('nav-down');
+    }
+  }
+
+  lastScrollTop = st;
+}

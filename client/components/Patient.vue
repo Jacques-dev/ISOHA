@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row h-100 d-flex align-items-center">
 
-        <div class="col-sm-4 ml-sm-auto mr-sm-auto" id="colonne-gauche">
+        <div class="col-sm-6 ml-sm-auto mr-sm-auto" id="colonne-gauche">
           <div class="container-fluid">
 
             <div class="row">
@@ -64,7 +64,7 @@
                       Taille :
                     </div>
                     <div class="col-sm-5 mr-sm-auto">
-                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                      <input name="telephone" :placeholder="user.taille" type="text" v-model="editingProfile.taille">
                     </div>
                   </div>
 
@@ -73,7 +73,7 @@
                       Poids :
                     </div>
                     <div class="col-sm-5 mr-sm-auto">
-                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                      <input name="telephone" :placeholder="user.poids" type="text" v-model="editingProfile.poids">
                     </div>
                   </div>
 
@@ -82,7 +82,7 @@
                       Date de naissance :
                     </div>
                     <div class="col-sm-5 mr-sm-auto">
-                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                      <input name="telephone" :placeholder="user.dateNaissance" type="text" v-model="editingProfile.dateNaissance">
                     </div>
                   </div>
 
@@ -91,7 +91,7 @@
                       Age :
                     </div>
                     <div class="col-sm-5 mr-sm-auto">
-                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                      <input name="telephone" :placeholder="user.age" type="text" v-model="editingProfile.age">
                     </div>
                   </div>
 
@@ -100,7 +100,7 @@
                       Profession :
                     </div>
                     <div class="col-sm-5 mr-sm-auto">
-                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                      <input name="telephone" :placeholder="user.profession" type="text" v-model="editingProfile.profession">
                     </div>
                   </div>
                   <br>
@@ -117,12 +117,12 @@
           </div>
         </div>
 
-        <div class="col-sm-7 ml-sm-auto mr-sm-auto h-50" id="colonne-droite">
+        <div class="col-sm-6 ml-sm-auto mr-sm-auto h-50" id="colonne-droite">
           <div class="container-fluid">
 
             <div class="row">
               <div class="col-sm-12">
-                <h2>Mon radios</h2>
+                <h2>Mes radios</h2>
               </div>
             </div>
 
@@ -142,15 +142,45 @@
 <script>
   module.exports = {
     props: {
-
+      user: {type: Object },
     },
     data () {
       return {
-
+        editingProfile: {
+          nom:'',
+          prenom:'',
+          email:'',
+          telephone:'',
+          dateNaissance:'',
+          age:'',
+          taille:'',
+          poids:'',
+          sexe:'',
+          profession:''
+        }
       }
     },
     methods: {
-
+      // Envoie un nouveau profil (modifié)
+      sendEditProfil(){
+        this.$emit('update-profile', this.editingProfile)
+        this.abortEditProfil()
+      },
+      // Annule la modification d'un profil
+      abortEditeProfil(){
+        this.editingProfile={
+          nom:'',
+          prenom:'',
+          email:'',
+          telephone:'',
+          dateNaissance:'',
+          age:'',
+          taille:'',
+          poids:'',
+          sexe:'',
+          profession:''
+        }
+      }
     }
   }
 </script>

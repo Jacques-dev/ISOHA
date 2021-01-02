@@ -1,0 +1,189 @@
+<<<<<<< Updated upstream:css/aPropos.css
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+=======
+@import url("color.css");
+
+body, html {
+>>>>>>> Stashed changes:css/pageaccueilmedecin.css
+  font-family: sans-serif;
+}
+
+li {
+  list-style-type: none;
+}
+
+body {
+  background: rgba(178, 177, 217, 1);
+  background: -moz-linear-gradient(
+    -45deg,
+    rgba(178, 177, 217, 1) 0%,
+    rgba(107, 142, 200, 1) 50%,
+    rgba(64, 83, 116, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    -45deg,
+    rgba(178, 177, 217, 1) 0%,
+    rgba(107, 142, 200, 1) 50%,
+    rgba(64, 83, 116, 1) 100%
+  );
+  background: -o-linear-gradient(
+    -45deg,
+    rgba(178, 177, 217, 1) 0%,
+    rgba(107, 142, 200, 1) 50%,
+    rgba(64, 83, 116, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    -45deg,
+    rgba(178, 177, 217, 1) 0%,
+    rgba(107, 142, 200, 1) 50%,
+    rgba(64, 83, 116, 1) 100%
+  );
+  background: linear-gradient(
+    135deg,
+    rgba(178, 177, 217, 1) 0%,
+    rgba(107, 142, 200, 1) 50%,
+    rgba(64, 83, 116, 1) 100%
+  );
+  
+}
+<<<<<<< Updated upstream:css/aPropos.css
+
+.logo {
+  float: right;
+  height: 40px;
+}
+
+.presentation {
+  text-align: center;
+  color: rgb(255, 233, 255);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  padding: 1cm;
+}
+
+.photoMembre {
+  max-height: 15%;
+  width: auto;
+}
+
+.banner {
+  max-width: 100%;
+  height: auto;
+}
+
+.wrapper {
+  display: flex;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.team-item {
+  flex-basis: 15%;
+  flex-shrink: 0;
+  margin: 0 1rem;
+  transition: all 0.4s;
+}
+
+.team-item:hover {
+  flex-basis: 20%;
+}
+
+.profile-contents p {
+  color: white;
+  font-size: 0.75rem;
+  width: 300px;
+  line-height: 1.5;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s;
+  transition-delay: 0.1s;
+}
+
+.team-item:hover .profile-contents p {
+  max-height: 80px;
+  opacity: 1;
+  margin-top: 0.5rem;
+}
+
+.team-item img {
+  width: 100%;
+}
+
+.profile {
+  background-color: #222;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+}
+
+.profile-contents {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 1rem;
+}
+
+.profile-contents h2 {
+  font-size: 2rem;
+  font-weight: 200;
+  font-family: Times, "Times New Roman", serif;
+}
+
+.profile-contents h2 span {
+  display: block;
+  font-size: 1rem;
+}
+
+/* .profile-contents p {
+  display: none;
+} */
+
+.profile_white {
+  color: white;
+}
+.profile_yellow {
+  color: rgb(243, 225, 146);
+}
+.profile_green {
+  color: rgb(188, 248, 160);
+}
+.profile_blue {
+  color: rgb(22, 53, 136);
+}
+.profile_purple {
+  color: rgb(255, 193, 239);
+}
+=======
+h1{
+    display:block;
+    text-align: center;
+    float:left;
+    border: 1px solid #000;
+    padding: 40px;
+    margin-right: 50px;
+    margin-left:50px;
+}
+>>>>>>> Stashed changes:css/pageaccueilmedecin.css

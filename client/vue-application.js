@@ -3,14 +3,17 @@ const Propos = window.httpVueLoader('./components/Propos.vue')
 const Profil = window.httpVueLoader('./components/Profil.vue')
 const Connexion = window.httpVueLoader('./components/Connexion.vue')
 const Deconnexion = window.httpVueLoader('./components/Deconnexion.vue')
+const Footer = window.httpVueLoader('./components/Footer.vue')
 
 const routes = [
   { path: '/', component: Accueil },
   { path: '/propos', component: Propos },
   { path: '/profil', component: Profil },
   { path: '/connexion', component: Connexion },
-  { path: '/deconnexion', component: Deconnexion }
+  { path: '/deconnexion', component: Deconnexion },
+  { path: '/footer', component: Footer },
 ]
+
 
 const router = new VueRouter({
   routes,

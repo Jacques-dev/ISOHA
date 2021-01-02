@@ -107,7 +107,7 @@
 	  border: 1px solid var(--c2);
 	  transition: 0.5s;
 	  z-index: -1;
-	}
+	  }
 
 	#accueil #button:hover::before {
 	  transform: scale(1.1);

@@ -1,67 +1,70 @@
 <template>
-	<div id="connexion">
 
-		<div class='box'>
-			<div class='box-form'>
-				<div class='box-login-tab'></div>
-				<div class='box-login-title'>
-					<div class='i i-login'></div>
-					<h2 v-if="!pasDeCompte">Identification</h2>
-					<h2 v-else>Enregistrement</h2>
-				</div>
-				<div class='box-login'>
-					<div class='fieldset-body' id='login_form'>
+	<div>
+		<div id="connexion">
 
-						<form v-if="!pasDeCompte" @submit.prevent="login">
-							<p class='field'>
-								<label for='email'>IDENTIFIANT (email)</label>
-								<input type="text" v-model="editLogin.email" placeholder="..." name="email" id="email" required>
-							</p>
+			<div class='box'>
+				<div class='box-form'>
+					<div class='box-login-tab'></div>
+					<div class='box-login-title'>
+						<div class='i i-login'></div>
+						<h2 v-if="!pasDeCompte">Identification</h2>
+						<h2 v-else>Enregistrement</h2>
+					</div>
+					<div class='box-login'>
+						<div class='fieldset-body' id='login_form'>
 
-							<p class='field'>
-								<label for='password'>MOT DE PASSE</label>
-								<input type="text" v-model="editLogin.password" placeholder="..." name="password" required>
-							</p>
+							<form v-if="!pasDeCompte" @submit.prevent="login">
+								<p class='field'>
+									<label for='email'>IDENTIFIANT (email)</label>
+									<input type="text" v-model="editLogin.email" placeholder="..." name="email" id="email" required>
+								</p>
 
-							<button type="submit" name="submit" id="login"/>Connexion</button>
-							<button @click="switchForm()" title="S'enregistrer" class="switchForm">Je n'ai pas de compte</button>
-						</form>
+								<p class='field'>
+									<label for='password'>MOT DE PASSE</label>
+									<input type="text" v-model="editLogin.password" placeholder="..." name="password" required>
+								</p>
 
-						<form v-else @submit.prevent="register">
-							<p class='field'>
-								<label for='nom'>NOM</label>
-								<input type="text" v-model="editRegister.nom" name="nom" placeholder="Entrer votre nom" required/>
-							</p>
+								<button type="submit" name="submit" id="login"/>Connexion</button>
+							</form>
 
-							<p class='field'>
-								<label for='prenom'>PRENOM</label>
-								<input type="text" v-model="editRegister.prenom" name="prenom" placeholder="Entrer votre prénom" required/>
-							</p>
+							<form v-else @submit.prevent="register">
+								<p class='field'>
+									<label for='nom'>NOM</label>
+									<input type="text" v-model="editRegister.nom" name="nom" placeholder="Entrer votre nom" required/>
+								</p>
 
-							<p class='field'>
-								<label for='telephone'>TELEPHONE</label>
-								<input type="text" v-model="editRegister.telephone" name="telephone" placeholder="xx.xx.xx.xx.xx" required/>
-							</p>
+								<p class='field'>
+									<label for='prenom'>PRENOM</label>
+									<input type="text" v-model="editRegister.prenom" name="prenom" placeholder="Entrer votre prénom" required/>
+								</p>
 
-							<p class='field'>
-								<label for='email'>EMAIL</label>
-								<input type="text" v-model="editRegister.email" placeholder="Entrez votre Email" name="email" id="email_register" equired>
-							</p>
+								<p class='field'>
+									<label for='telephone'>TELEPHONE</label>
+									<input type="text" v-model="editRegister.telephone" name="telephone" placeholder="xx.xx.xx.xx.xx" required/>
+								</p>
 
-							<p class='field'>
-								<label for='password'>MOT DE PASSE</label>
-								<input type="text" v-model="editRegister.password" placeholder="Entrez votre mot de passe" name="password" required>
-							</p>
+								<p class='field'>
+									<label for='email'>EMAIL</label>
+									<input type="text" v-model="editRegister.email" placeholder="Entrez votre Email" name="email" id="email_register" equired>
+								</p>
 
-							<button type="submit" name="submit" id="register"/>S'enregistrer</button>
-							<button @click="switchForm()" title="S'enregistrer" class="switchForm">J'ai un compte</button>
-						</form>
+								<p class='field'>
+									<label for='password'>MOT DE PASSE</label>
+									<input type="text" v-model="editRegister.password" placeholder="Entrez votre mot de passe" name="password" required>
+								</p>
 
+								<button type="submit" name="submit" id="register"/>S'enregistrer</button>
+								<button @click="switchForm()" title="S'enregistrer" class="switchForm">J'ai un compte</button>
+							</form>
+
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
+		</div>
+		<button v-if="!pasDeCompte" id="enregistrer-medecin" @click="switchForm()" title="S'enregistrer" class="switchForm">Enregistrer un compte Médecin</button>
 	</div>
 </template>
 
@@ -480,6 +483,14 @@
 	  -moz-animation: bounceIn 0.6s linear;
 	  -o-animation: bounceIn 0.6s linear;
 	  animation: bounceIn 0.6s linear;
+	}
+
+	#enregistrer-medecin {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		background-color: var(--c6);
+		border: none;
 	}
 
 </style>

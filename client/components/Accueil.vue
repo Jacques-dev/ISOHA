@@ -10,13 +10,13 @@
 				</video>
 
 				<div class="col-sm-1 ml-sm-auto mr-sm-auto column_design" align="center">
-					<form enctype="multipart/form-data">
+					<form enctype="multipart/form-data" id="fileUpload">
 
 						<label for="file" id="button">
 							<i class="fas fa-search"></i>
 						</label>
 
-						<input @change="radioSauvegarde($event)" onclick="animationChargement()" id="file" type="file" name="file" accept=".jpg, .jpeg, .png" required/>
+						<input @change="radioSauvegarde($event)" onclick="animationChargement()" onchange="analyse()" id="file" type="file" name="file" accept=".jpg, .jpeg, .png" required/>
 					</form>
 				</div>
 
@@ -31,6 +31,14 @@
 							<label id="animation6">●</label>
 						</div>
 						<img :src="radio" id="radio">
+						<div id="analyse-content">
+							Analyse en cours
+							<div id="analyse"></div>
+							<div id="analyse-resulat">
+								C'est bon
+							</div>
+						</div>
+
 					</div>
 				</div>
 
@@ -198,6 +206,29 @@
 	#animation6 {
 		-webkit-animation: chargement 3s 500ms infinite ease-in-out;
 		animation: chargement 3s 500ms infinite ease-in-out;
+	}
+
+	#analyse-content {
+		display: none;
+	}
+
+	#analyse {
+	  width: 100px;
+	  height: 100px;
+	  border-radius: 50%;
+	  border: 5px solid #adbcdf;
+	  border-top-color: #002245;
+	  animation: chargement2 1s infinite linear;
+		display: none;
+	}
+
+	@keyframes chargement2 {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+
+	#analyse-resultat {
+		display: none;
 	}
 
 </style>

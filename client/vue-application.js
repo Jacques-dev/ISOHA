@@ -167,10 +167,24 @@ function hasScrolled() {
 }
 
 function animationChargement() {
-  document.getElementById('animation1').style.animation ='none';
-  document.getElementById('animation2').style.animation ='none';
-  document.getElementById('animation3').style.animation ='none';
-  document.getElementById('animation4').style.animation ='none';
-  document.getElementById('animation5').style.animation ='none';
-  document.getElementById('animation6').style.animation ='none';
+  document.getElementById('animation1').style.animation = 'none';
+  document.getElementById('animation2').style.animation = 'none';
+  document.getElementById('animation3').style.animation = 'none';
+  document.getElementById('animation4').style.animation = 'none';
+  document.getElementById('animation5').style.animation = 'none';
+  document.getElementById('animation6').style.animation = 'none';
+}
+
+function analyse() {
+  document.getElementById('analyse-content').style.display = 'block';
+  resulat();
+}
+
+function resulat() {
+  setTimeout(function() {
+    document.getElementById('analyse-resulat').setAttribute("style", "display:block");
+    document.getElementById('analyse').setAttribute("style", "display:none");
+  }, 2000);
+  document.getElementById('analyse-resulat').setAttribute("style", "display:none");
+  document.getElementById('analyse').setAttribute("style", "display:block");
 }

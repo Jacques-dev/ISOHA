@@ -166,10 +166,6 @@ function hasScrolled() {
   lastScrollTop = st;
 }
 
-// let file = document.getElementById('file')
-// watchme.addEventListener('click', () =>
-//   watchme.addEventListener('animationiteration', listener, false)
-
 function animationChargement() {
   document.getElementById('animation1').style.animation ='none';
   document.getElementById('animation2').style.animation ='none';

@@ -47,7 +47,11 @@ var app = new Vue({
     medecin: null,
     patient: null,
     recherches: [],
-    radio: null
+    radio: null,
+    result: {
+      color: null,
+      text: null
+    }
   },
   async mounted () {
 
@@ -118,19 +122,60 @@ var app = new Vue({
           message: "Email ou date de naissance incorrect"
         })
       }
-      router.push('/patient')
     },
     async radioSauvegarde (radio) {
-      const res = await axios.post('/api/radio/', 'radio=' + radio)
-      this.radio = res.data
+
+      await axios.post('/api/radio/', 'radio=' + radio)
+      const res = await axios.get('/api/me')
+      this.radio = res.data.radio
+
     }
   }
 })
 
+// -----------------------------------------------------------------------------
+
+function animationChargement() {
+  document.getElementById('animation1').style.animation = 'none';
+  document.getElementById('animation2').style.animation = 'none';
+  document.getElementById('animation3').style.animation = 'none';
+  document.getElementById('animation4').style.animation = 'none';
+  document.getElementById('animation5').style.animation = 'none';
+  document.getElementById('animation6').style.animation = 'none';
+}
+
+function analyse() {
+  app.result.color = "white"
+  app.result.text = ""
+  document.getElementById('analyse-content').setAttribute("style", "display:block");
+  document.getElementById('analyse-en-cours').setAttribute("style", "display:block");
+  resulat();
+}
+
+function resulat() {
+  setTimeout(function() {
+    document.getElementById('analyse-en-cours').setAttribute("style", "display:none");
+    document.getElementById('analyse').setAttribute("style", "display:none");
+    document.getElementById('analyse-resulat').setAttribute("style", "display:block; margin-top: 25px");
+
+    const r = Math.floor(Math.random()*(1-0+1)+0)//(max-min+1)+min
+    if (r) {
+      app.result.color = "#1abc69"
+      app.result.text = "Aucune lésion du tissu nerveux détecté"
+    } else {
+      app.result.color = "#bc1a1a"
+      app.result.text = "Des lésions du tissu nerveux ont été détectées"
+    }
+
+  }, 2000);
+  document.getElementById('analyse-resulat').setAttribute("style", "display:none");
+  document.getElementById('analyse').setAttribute("style", "display:block");
+}
+
 // Hide Header on on scroll down
 var didScroll;
 var lastScrollTop = 0;
-var delta = 5;
+var delta = 4;
 var navbarHeight = $('footer').outerHeight();
 
 $(window).scroll(function(event){
@@ -139,10 +184,10 @@ $(window).scroll(function(event){
 
 setInterval(function() {
   if (didScroll) {
-      hasScrolled();
-      didScroll = false;
+    hasScrolled();
+    didScroll = false;
   }
-}, 150);
+}, 10);
 
 function hasScrolled() {
   var st = $(this).scrollTop();
@@ -164,27 +209,4 @@ function hasScrolled() {
   }
 
   lastScrollTop = st;
-}
-
-function animationChargement() {
-  document.getElementById('animation1').style.animation = 'none';
-  document.getElementById('animation2').style.animation = 'none';
-  document.getElementById('animation3').style.animation = 'none';
-  document.getElementById('animation4').style.animation = 'none';
-  document.getElementById('animation5').style.animation = 'none';
-  document.getElementById('animation6').style.animation = 'none';
-}
-
-function analyse() {
-  document.getElementById('analyse-content').style.display = 'block';
-  resulat();
-}
-
-function resulat() {
-  setTimeout(function() {
-    document.getElementById('analyse-resulat').setAttribute("style", "display:block");
-    document.getElementById('analyse').setAttribute("style", "display:none");
-  }, 2000);
-  document.getElementById('analyse-resulat').setAttribute("style", "display:none");
-  document.getElementById('analyse').setAttribute("style", "display:block");
 }

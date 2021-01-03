@@ -4,8 +4,8 @@
     <div class="container">
       <div class="row h-100 d-flex align-items-center">
 
-        <div class="col-sm-3 ml-sm-auto mr-sm-auto" id="colonne-gauche">
-          <div class="container-fluid">
+        <div class="col-sm-6 ml-sm-auto mr-sm-auto" id="colonne-gauche">
+          <div class="container-fluid" id="mes_infos">
 
             <div class="row">
               <div class="col-sm-12" align="center">
@@ -21,27 +21,63 @@
 
             <div class="row content">
               <div class="col-sm-12">
-                <ul>
-                  <li>Nom :</li>
-                  <li>Prénom :</li>
-                  <li>Identifiant :</li>
-                  <li>Date de naissance :</li>
-                  <li>Taille :</li>
-                  <li>Poids :</li>
-                  <li>Sexe :</li>
-                </ul>
+                <form id="formulaire_modification_profil" @submit.prevent="sendEditProfil">
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Nom :
+                    </div>
+                    <div class="col-sm-9 mr-sm-auto">
+                      <input name="nom" :placeholder="user.nom" type="text" v-model="editingProfile.nom">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Prenom :
+                    </div>
+                    <div class="col-sm-9 mr-sm-auto">
+                      <input name="prenom" :placeholder="user.prenom" type="text" v-model="editingProfile.prenom">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Email :
+                    </div>
+                    <div class="col-sm-9 mr-sm-auto">
+                      <input name="email" :placeholder="user.email" type="text" v-model="editingProfile.email">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
+                      Telephone :
+                    </div>
+                    <div class="col-sm-9 mr-sm-auto">
+                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-12" align="center">
+                      <button type="submit" class="btn">Modifier</button>
+                    </div>
+                  </div>
+
+                </form>
               </div>
             </div>
 
           </div>
         </div>
 
-        <div class="col-sm-7 ml-sm-auto mr-sm-auto h-50" id="colonne-droite">
+        <div class="col-sm-6 ml-sm-auto mr-sm-auto h-50" id="colonne-droite">
           <div class="container-fluid">
 
             <div class="row">
               <div class="col-sm-12">
-                <h2>Mon profil</h2>
+                <h2>Jsp encore</h2>
               </div>
             </div>
 
@@ -61,15 +97,33 @@
 <script>
   module.exports = {
     props: {
-
+      user: {type: Object },
     },
     data () {
       return {
-
+        editingProfile: {
+          nom:'',
+          prenom:'',
+          email:'',
+          telephone:''
+        }
       }
     },
     methods: {
-
+      // Envoie un nouveau profil (modifié)
+      sendEditProfil(){
+        this.$emit('update-profile', this.editingProfile)
+        this.abortEditProfil()
+      },
+      // Annule la modification d'un profil
+      abortEditeProfil(){
+        this.editingProfile={
+          nom:'',
+          prenom:'',
+          email:'',
+          telephone:''
+        }
+      }
     }
   }
 </script>
@@ -90,14 +144,25 @@
     width: 100%;
   }
 
-  #medecin button {
-    border: 1px solid #007cd6;
-    border-radius: 3px;
-  }
-
   #medecin .content {
     background-color: #96d3ff;
     border-radius: 3px;
+  }
+
+  #medecin #mes_infos input {
+    width: 80%;
+    border: none;
+    border-bottom: solid 2px var(--c1) !important;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, var(--1) 4%);
+    color: var(--c2);
+  }
+
+  #medecin #mes_infos input:focus, #medecin #mes_infos input:valid {
+    outline: none;
+  }
+
+  #medecin #mes_infos input:focus::-webkit-input-placeholder, #medecin #mes_infos input:valid::-webkit-input-placeholder {
+    font-size: 15px;
   }
 
 </style>

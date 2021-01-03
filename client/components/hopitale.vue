@@ -72,8 +72,14 @@
 </script>
 
 <style scoped>
+
+  #hopitale {
+    
+  }
+
   #resultats-recherche {
     height: 300px;
     overflow-y: scroll;
   }
+
 </style>

@@ -218,17 +218,18 @@
     var email = req.body.email
     var dateNaissance = req.body.dateNaissance
 
-    var conditionEmail, conditionDate
-    if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i) || !email) {
-      conditionEmail = true
-    } else {
-      conditionEmail = false
+    var conditionEmail = true
+    var conditionDate = true
+    if (email) {
+      if (!email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
+        conditionEmail = false
+      }
     }
 
-    if (dateNaissance.match(/([0-9]{2}[\/])([0-9]{2}[\/])([0-9]{4})+/i) || !dateNaissance) {
-      conditionDate = true
-    } else {
-      conditionDate = false
+    if (dateNaissance && req.session.patient) {
+      if (!dateNaissance.match(/([0-9]{2}[\/])([0-9]{2}[\/])([0-9]{4})+/i)) {
+        conditionDate = false
+      }
     }
 
     if (conditionEmail && conditionDate) {
@@ -269,7 +270,6 @@
       if (!profession) {
         profession = req.session.userProfession
       }
-
       req.session.userName = nom
       req.session.userFirstName = prenom
       req.session.userEmail = email
@@ -281,14 +281,30 @@
       req.session.userSexe = sexe
       req.session.userProfession = profession
 
-      var update = "UPDATE patient SET nom = $1, prenom = $2, email = $3, telephone = $4, "
-      update += "datenaissance = $5, age = $6, taille = $7, poids = $8, sexe = $9, profession = $10 "
-      update += "WHERE email=$3"
-      const result = await client.query({
-        text: update,
-        values: [nom, prenom, email, telephone, dateNaissance, age, taille, poids, sexe, profession]
-      })
+      if (req.session.patient) {
+        var update = "UPDATE patient SET nom = $1, prenom = $2, email = $3, telephone = $4, "
+        update += "datenaissance = $5, age = $6, taille = $7, poids = $8, sexe = $9, profession = $10 "
+        update += "WHERE email=$3"
+        await client.query({
+          text: update,
+          values: [nom, prenom, email, telephone, dateNaissance, age, taille, poids, sexe, profession]
+        })
+        res.send()
+      } else {
+        var update = "UPDATE medecin SET nom = $1, prenom = $2, email = $3, telephone = $4 "
+        update += "WHERE email=$3"
+        await client.query({
+          text: update,
+          values: [nom, prenom, email, telephone]
+        })
+        res.send()
+      }
 
+      var update2 = "UPDATE utilisateur SET email = $1 WHERE email = $1"
+      await client.query({
+        text: update2,
+        values: [email]
+      })
       res.send()
     } else {
       res.status(404).json({ message: "email or dateNaissance correct" })
@@ -316,13 +332,13 @@
     res.json(log)
   })
 
-  router.post('/radio', (req, res) => {
+  router.post('/radio', async (req, res) => {
     const radio = req.body.radio
 
     req.session.radio = radio
     res.send()
 
-    res.json(radio)
+    // res.json(radio)
   })
 
 module.exports = router

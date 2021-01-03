@@ -21,7 +21,7 @@
 				</div>
 
 				<div class="col-sm-4" align="center">
-					<div class="column_design">
+					<div class="column_design" :style="{ background: result.color }">
 						<div class="cs-loader-inner">
 							<label id="animation1">●</label>
 							<label id="animation2">●</label>
@@ -32,10 +32,12 @@
 						</div>
 						<img :src="radio" id="radio">
 						<div id="analyse-content">
-							Analyse en cours
+							<div id="analyse-en-cours">
+								Analyse en cours
+							</div>
 							<div id="analyse"></div>
-							<div id="analyse-resulat">
-								C'est bon
+							<div id="analyse-resulat" class="column_design">
+								{{ result.text }}
 							</div>
 						</div>
 
@@ -52,7 +54,8 @@
 <script>
 	module.exports = {
 		props: {
-			radio: { type: String }
+			radio: { type: String },
+			result: { type: String }
 		},
 		data () {
 			return {
@@ -62,8 +65,6 @@
 		methods: {
 			radioSauvegarde (e) {
 				const selectFile = e.target.files[0]
-				this.radio = URL.createObjectURL(selectFile)
-
 				this.$emit('sauvegarde-radio', URL.createObjectURL(selectFile))
 	    }
 		}
@@ -95,6 +96,7 @@
 	}
 
 	#accueil #radio {
+		border: 1px solid black;
 		width: 200px;
 	}
 
@@ -209,6 +211,10 @@
 	}
 
 	#analyse-content {
+		display: none;
+	}
+
+	#analyse-en-cours {
 		display: none;
 	}
 

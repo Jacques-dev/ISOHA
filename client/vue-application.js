@@ -46,7 +46,8 @@ var app = new Vue({
     },
     medecin: null,
     patient: null,
-    recherches: []
+    recherches: [],
+    radio: null
   },
   async mounted () {
 
@@ -54,6 +55,7 @@ var app = new Vue({
     this.user = res.data.user
     this.medecin = res.data.medecin
     this.patient = res.data.patient
+    this.radio = res.data.radio
 
   },
   methods: {
@@ -79,6 +81,7 @@ var app = new Vue({
       this.user = res.data.user
       this.medecin = res.data.medecin
       this.patient = res.data.patient
+      this.radio = res.data.radio
 
       if (this.medecin) {
         router.push('/')
@@ -92,6 +95,7 @@ var app = new Vue({
       this.user = res.data.user
       this.medecin = res.data.medecin
       this.patient = res.data.patient
+      this.radio = res.data.radio
       this.patientRecherche = []
       router.push('/connexion')
     },
@@ -115,6 +119,10 @@ var app = new Vue({
         })
       }
       router.push('/patient')
+    },
+    async radioSauvegarde (radio) {
+      const res = await axios.post('/api/radio/', 'radio=' + radio)
+      this.radio = res.data
     }
   }
 })
@@ -156,4 +164,17 @@ function hasScrolled() {
   }
 
   lastScrollTop = st;
+}
+
+// let file = document.getElementById('file')
+// watchme.addEventListener('click', () =>
+//   watchme.addEventListener('animationiteration', listener, false)
+
+function animationChargement() {
+  document.getElementById('animation1').style.animation ='none';
+  document.getElementById('animation2').style.animation ='none';
+  document.getElementById('animation3').style.animation ='none';
+  document.getElementById('animation4').style.animation ='none';
+  document.getElementById('animation5').style.animation ='none';
+  document.getElementById('animation6').style.animation ='none';
 }

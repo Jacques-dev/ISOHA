@@ -10,19 +10,27 @@
 				</video>
 
 				<div class="col-sm-1 ml-sm-auto mr-sm-auto column_design" align="center">
-					<form method="post" enctype="multipart/form-data">
+					<form enctype="multipart/form-data">
 
 						<label for="file" id="button">
 							<i class="fas fa-search"></i>
 						</label>
-						<input type="file" name="file" id="file" accept=".jpg, .jpeg, .png" required/>
 
+						<input @change="radioSauvegarde($event)" onclick="animationChargement()" id="file" type="file" name="file" accept=".jpg, .jpeg, .png" required/>
 					</form>
 				</div>
 
 				<div class="col-sm-4" align="center">
 					<div class="column_design">
-						les résultats de l'algo ici
+						<div class="cs-loader-inner">
+							<label id="animation1">●</label>
+							<label id="animation2">●</label>
+							<label id="animation3">●</label>
+							<label id="animation4">●</label>
+							<label id="animation5">●</label>
+							<label id="animation6">●</label>
+						</div>
+						<img :src="radio" id="radio">
 					</div>
 				</div>
 
@@ -35,13 +43,21 @@
 
 <script>
 	module.exports = {
+		props: {
+			radio: { type: String }
+		},
 		data () {
 			return {
 
 			}
 		},
 		methods: {
+			radioSauvegarde (e) {
+				const selectFile = e.target.files[0]
+				this.radio = URL.createObjectURL(selectFile)
 
+				this.$emit('sauvegarde-radio', URL.createObjectURL(selectFile))
+	    }
 		}
 	}
 </script>
@@ -68,6 +84,10 @@
 	  background: var(--c1);
 	  border-radius: 15px;
 	  box-shadow: 0px 0px 5px 3px black;
+	}
+
+	#accueil #radio {
+		width: 200px;
 	}
 
 	#accueil form {
@@ -122,6 +142,62 @@
 
 	#accueil #button i {
 	  font-size: 50px;
+	}
+
+	.cs-loader-inner label {
+		opacity: 0;
+    display:inline-block;
+	}
+
+	@keyframes chargement {
+		0% {
+			opacity: 0;
+			transform: translateX(-250px);
+	    rotate 0
+		}
+		33% {
+			opacity: 1;
+			transform: translateX(0px);
+	    rotatate: 90
+		}
+		66% {
+			opacity: 1;
+			transform: translateX(0px);
+	    rotate: 180
+		}
+		100% {
+			opacity: 0;
+			transform: translateX(250px);
+	    rotate: -90
+		}
+	}
+	#animation1 {
+		animation: chargement 3s infinite ease-in-out;
+	}
+
+	#animation2 {
+		-webkit-animation: chargement 3s 100ms infinite ease-in-out;
+		animation: chargement 3s 100ms infinite ease-in-out;
+	}
+
+	#animation3 {
+		-webkit-animation: chargement 3s 200ms infinite ease-in-out;
+		animation: chargement 3s 200ms infinite ease-in-out;
+	}
+
+	#animation4 {
+		-webkit-animation: chargement 3s 300ms infinite ease-in-out;
+		animation: chargement 3s 300ms infinite ease-in-out;
+	}
+
+	#animation5 {
+		-webkit-animation: chargement 3s 400ms infinite ease-in-out;
+		animation: chargement 3s 400ms infinite ease-in-out;
+	}
+
+	#animation6 {
+		-webkit-animation: chargement 3s 500ms infinite ease-in-out;
+		animation: chargement 3s 500ms infinite ease-in-out;
 	}
 
 </style>

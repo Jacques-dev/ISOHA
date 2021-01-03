@@ -72,6 +72,8 @@
         <router-view
           :user="user"
           :recherches="recherches"
+          :radio="radio"
+          @sauvegarde-radio="radioSauvegarde"
           @update-profile="updateProfile"
           @register="register"
           @ajouter-patient="register"

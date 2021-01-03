@@ -167,7 +167,8 @@
     const log = {
       patient: req.session.patient,
       medecin: req.session.medecin,
-      user: user
+      user: user,
+      radio: req.session.radio
     }
     res.json(log)
   })
@@ -202,7 +203,8 @@
       const log = {
         patient: req.session.patient,
         medecin: req.session.medecin,
-        user: user
+        user: user,
+        radio: req.session.radio
       }
       res.json(log)
     } else {
@@ -312,6 +314,15 @@
     }
 
     res.json(log)
+  })
+
+  router.post('/radio', (req, res) => {
+    const radio = req.body.radio
+
+    req.session.radio = radio
+    res.send()
+
+    res.json(radio)
   })
 
 module.exports = router

@@ -97,6 +97,20 @@
 
                   <div class="row">
                     <div class="col-sm-3 ml-sm-auto">
+                      Sexe :
+                    </div>
+                    <div class="col-sm-5 mr-sm-auto">
+                      <select class="col-sm-12" v-model="editingProfile.sexe">
+                        <option value="" disabled selected>{{user.sexe}}</option>
+                        <option value="Femme">Femme</option>
+                        <option value="Homme">Homme</option>
+                        <option value="Transgenre">Transgenre</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3 ml-sm-auto">
                       Profession :
                     </div>
                     <div class="col-sm-5 mr-sm-auto">

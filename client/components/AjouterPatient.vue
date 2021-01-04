@@ -1,45 +1,45 @@
 <template>
   <div id="formulaire_ajouter_plat">
 
-    <form @submit.prevent="ajouterPatient">
+    <form @submit.prevent="ajouterPatient" id="ajouterPatientForm">
       <div class="row">
-        <div class="col-sm-12">Nouveau patient à ajouter</div>
+        <div class="col-sm-12"><h2>Nouveau patient</h2></div>
       </div>
 
       <div class="row">
-        <input class="col-sm-12" type="text" v-model="newPatient.nom" placeholder="Nom" required>
+        <input class="col-sm-12 input"  type="text" v-model="newPatient.nom" placeholder="Nom" required>
       </div>
 
       <div class="row">
-        <input class="col-sm-12" type="text" v-model="newPatient.prenom" placeholder="Prénom" required>
+        <input class="col-sm-12 input"  type="text" v-model="newPatient.prenom" placeholder="Prénom" required>
       </div>
 
       <div class="row">
-        <input class="col-sm-12" type="text" v-model="newPatient.email" placeholder="Email" id="email" required>
+        <input class="col-sm-12 input"  type="text" v-model="newPatient.email" placeholder="Email" id="email" required>
       </div>
 
       <div class="row">
-        <input class="col-sm-12" type="text" v-model="newPatient.password" placeholder="Mot de passe" required>
+        <input class="col-sm-12 input"  type="text" v-model="newPatient.password" placeholder="Mot de passe" required>
       </div>
 
       <div class="row">
-        <input class="col-sm-12" type="text" v-model="newPatient.telephone" placeholder="Téléphone" required>
+        <input class="col-sm-12 input"  type="text" v-model="newPatient.telephone" placeholder="Téléphone" required>
       </div>
 
       <div class="row">
-        <input class="col-sm-12" type="text" v-model="newPatient.dateNaissance" placeholder="Date de naissane : ../../...." id="date" required>
+        <input class="col-sm-12 input"  type="text" v-model="newPatient.dateNaissance" placeholder="Date de naissane : ../../...." id="date" required>
       </div>
 
       <div class="row">
-        <input class="col-sm-12" type="text" v-model="newPatient.age" placeholder="Age" required>
+        <input class="col-sm-12 input"  type="text" v-model="newPatient.age" placeholder="Age" required>
       </div>
 
       <div class="row">
-        <input class="col-sm-12" type="text" v-model="newPatient.taille" placeholder="Taille" required>
+        <input class="col-sm-12 input"  type="text" v-model="newPatient.taille" placeholder="Taille" required>
       </div>
 
       <div class="row">
-        <input class="col-sm-12" type="text" v-model="newPatient.poids" placeholder="poids" required>
+        <input class="col-sm-12 input"  type="text" v-model="newPatient.poids" placeholder="poids" required>
       </div>
 
       <div class="row">
@@ -52,12 +52,13 @@
       </div>
 
       <div class="row">
-        <input class="col-sm-12" type="text" v-model="newPatient.profession" placeholder="Profession">
+        <input class="col-sm-12 input"  type="text" v-model="newPatient.profession" placeholder="Profession">
       </div>
 
       <div class="row">
-        <button class="col-sm-12" type="submit">Ajouter</button>
+        <button class="col-sm-12 btn" type="submit">Ajouter</button>
       </div>
+
     </form>
 
 

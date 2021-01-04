@@ -5,7 +5,7 @@
       <div class="row h-100 d-flex align-items-center">
 
         <div class="col-sm-6 ml-sm-auto mr-sm-auto" id="colonne-gauche">
-          <div class="container-fluid" id="mes_infos">
+          <div class="container-fluid">
 
             <div class="row">
               <div class="col-sm-12" align="center">
@@ -21,14 +21,14 @@
 
             <div class="row content">
               <div class="col-sm-12">
-                <form id="formulaire_modification_profil" @submit.prevent="sendEditProfil">
+                <form id="modificationProfilMedecinForm" @submit.prevent="sendEditProfil">
 
                   <div class="row">
                     <div class="col-sm-3 ml-sm-auto">
                       Nom :
                     </div>
                     <div class="col-sm-9 mr-sm-auto">
-                      <input name="nom" :placeholder="user.nom" type="text" v-model="editingProfile.nom">
+                      <input class="input" name="nom" :placeholder="user.nom" type="text" v-model="editingProfile.nom">
                     </div>
                   </div>
 
@@ -37,7 +37,7 @@
                       Prenom :
                     </div>
                     <div class="col-sm-9 mr-sm-auto">
-                      <input name="prenom" :placeholder="user.prenom" type="text" v-model="editingProfile.prenom">
+                      <input class="input" name="prenom" :placeholder="user.prenom" type="text" v-model="editingProfile.prenom">
                     </div>
                   </div>
 
@@ -46,7 +46,7 @@
                       Email :
                     </div>
                     <div class="col-sm-9 mr-sm-auto">
-                      <input name="email" :placeholder="user.email" type="text" v-model="editingProfile.email">
+                      <input class="input" name="email" :placeholder="user.email" type="text" v-model="editingProfile.email">
                     </div>
                   </div>
 
@@ -55,7 +55,7 @@
                       Telephone :
                     </div>
                     <div class="col-sm-9 mr-sm-auto">
-                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                      <input class="input" name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
                     </div>
                   </div>
 
@@ -147,22 +147,6 @@
   #medecin .content {
     background-color: #96d3ff;
     border-radius: 3px;
-  }
-
-  #medecin #mes_infos input {
-    width: 80%;
-    border: none;
-    border-bottom: solid 2px var(--c1) !important;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, var(--1) 4%);
-    color: var(--c2);
-  }
-
-  #medecin #mes_infos input:focus, #medecin #mes_infos input:valid {
-    outline: none;
-  }
-
-  #medecin #mes_infos input:focus::-webkit-input-placeholder, #medecin #mes_infos input:valid::-webkit-input-placeholder {
-    font-size: 15px;
   }
 
 </style>

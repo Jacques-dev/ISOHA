@@ -1,7 +1,7 @@
 <template>
   <div id="ajouterPatient">
 
-    <form @submit.prevent="ajouterPatient" id="ajouterPatientForm">
+    <form @submit.prevent="ajouterPatient" id="ajouterPatientForm" enctype="multipart/form-data">
       <div class="row">
         <div class="col-sm-12"><h2>Nouveau patient</h2></div>
       </div>
@@ -55,6 +55,8 @@
         <input class="col-sm-12 input"  type="text" v-model="newPatient.profession" placeholder="Profession">
       </div>
 
+      <input @change="ajouterRadio($event)" type="file" accept=".jpg, .jpeg, .png" required/>
+
       <div class="row">
         <button class="col-sm-12 btn" type="submit">Ajouter</button>
       </div>
@@ -80,11 +82,16 @@
           taille: '',
           poids: '',
           sexe: '',
-          profession: ''
+          profession: '',
+          radio: ''
         }
       }
     },
     methods: {
+      ajouterRadio(e) {
+        const selectFile = e.target.files[0]
+        this.newPatient.radio = URL.createObjectURL(selectFile)
+      },
       // Envoie la valeur des champs du formulaire
       ajouterPatient () {
         var email = document.getElementById("email").value

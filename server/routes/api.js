@@ -24,6 +24,7 @@
     const poids = req.body.poids
     const sexe = req.body.sexe
     const profession = req.body.profession
+    const radio = req.body.radio
 
     const sql = "SELECT * FROM utilisateur WHERE email=$1"
 
@@ -44,6 +45,13 @@
         await client.query({
           text: insert_patient_medecin,
           values: [nom, prenom, email, telephone, dateNaissance, age, taille, poids, sexe, profession]
+        })
+        res.send()
+
+        insert_patient_radio = "INSERT INTO radios (email, image) VALUES ($1, $2)"
+        await client.query({
+          text: insert_patient_radio,
+          values: [email, radio]
         })
         res.send()
 
@@ -107,6 +115,15 @@
           req.session.userSexe = result2.rows[0].sexe
           req.session.userProfession = result2.rows[0].profession
 
+          select_radio = "SELECT image FROM radios WHERE email=$1"
+
+          const result3 = await client.query({
+            text: select_radio,
+            values: [email]
+          })
+
+          req.session.userRadio = result3.rows
+          console.log(req.session.userRadio)
           res.send()
 
         } else if (email.match(/(medecin-)+[a-z]+(-)+[a-z]+(-efrei_2023)/gm)) {
@@ -151,6 +168,7 @@
     req.session.userPoids = null
     req.session.userSexe = null
     req.session.userProfession = null
+    req.session.userRadio = null
 
     user = {
       nom: req.session.userName,
@@ -163,6 +181,7 @@
       poids: req.session.userPoids,
       sexe: req.session.userSexe,
       profession: req.session.userProfession,
+      radio: req.session.userRadio
     }
     const log = {
       patient: req.session.patient,
@@ -190,6 +209,7 @@
           poids: req.session.userPoids,
           sexe: req.session.userSexe,
           profession: req.session.userProfession,
+          radio: req.session.userRadio
         }
       } else {
         user = {
@@ -333,12 +353,13 @@
   })
 
   router.post('/radio', async (req, res) => {
-    const radio = req.body.radio
-
+    // const radio = req.body.radio
+    const string = req.body.radio.split("/")
+    const string2 = string[0].split(":")
+    const radio = string2[0] + ":" + string[3]
     req.session.radio = radio
     res.send()
 
-    // res.json(radio)
   })
 
 module.exports = router

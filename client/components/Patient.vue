@@ -141,7 +141,9 @@
             </div>
 
             <div class="row content h-100">
-
+              <div v-for="r in user.radio">
+                <img :src="r">
+              </div>
             </div>
 
           </div>

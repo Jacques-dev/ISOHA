@@ -45,7 +45,8 @@ var app = new Vue({
       taille: null,
       poids: null,
       sexe: null,
-      profession: null
+      profession: null,
+      radio: null
     },
     medecin: null,
     patient: null,
@@ -70,14 +71,18 @@ var app = new Vue({
       try {
         var route = 'nom=' + user.nom + '&prenom=' + user.prenom + '&email=' + user.email + '&password=' + user.password + '&telephone=' + user.telephone
         route += '&dateNaissance=' + user.dateNaissance + '&age=' + user.age + '&taille=' + user.taille + '&poids=' + user.poids + '&sexe=' + user.sexe
-        route += '&profession=' + user.profession
+        route += '&profession=' + user.profession + '&radio=' + user.radio
         await axios.post('/api/register/',route)
-        router.push('/connexion')
+        if (user.email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
+        } else {
+          router.push('/connexion')
+        }
       } catch (e) {
         asAlertMsg({
           type: "warning",
           title: "Attention",
-          message: "Vous vous êtes déjà enregistré"
+          message: "Vous vous êtes déjà enregistré",
+          timer: 2000,
         })
       }
     },
@@ -90,11 +95,7 @@ var app = new Vue({
       this.patient = res.data.patient
       this.radio = res.data.radio
 
-      if (this.medecin) {
-        router.push('/')
-      } else {
-        router.push('/patient')
-      }
+      router.push('/')
 
     },
     async logout () {
@@ -122,16 +123,15 @@ var app = new Vue({
         asAlertMsg({
           type: "warning",
           title: "Attention",
-          message: "Email ou date de naissance incorrect"
+          message: "Email ou date de naissance incorrect",
+          timer: 2000,
         })
       }
     },
     async radioSauvegarde (radio) {
-
       await axios.post('/api/radio/', 'radio=' + radio)
       const res = await axios.get('/api/me')
       this.radio = res.data.radio
-
     }
   }
 })

@@ -43,6 +43,10 @@
           <ajouter-patient @ajouter-patient="ajouterPatient"></ajouter-patient>
         </div>
 
+        <!-- <div v-if="nouveauPatient">
+          <ajouter-radio @ajouter-radio="ajouterRadio"></ajouter-radio>
+        </div> -->
+
       </div>
     </div>
 
@@ -64,6 +68,7 @@
           nom: '',
           prenom: ''
         },
+        // nouveauPatient: false
 			}
 		},
 		methods: {
@@ -71,8 +76,14 @@
         this.$emit('chercher-patient', this.chercher)
       },
       ajouterPatient (newPatient) {
+        // this.nouveauPatient = true
+        // alert(this.nouveauPatient)
         this.$emit('ajouter-patient', newPatient)
-      }
+      },
+      // ajouterRadio(radio) {
+      //   this.$emit('ajouter-radio', radio)
+      //   this.nouveauPatient = false
+      // }
 		}
   }
 </script>

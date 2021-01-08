@@ -4,63 +4,63 @@
     <div class="container">
       <div class="row h-100 d-flex align-items-center">
 
-        <div class="col-sm-6 ml-sm-auto mr-sm-auto" id="colonne-gauche">
+        <div class="col-lg-6 ml-lg-auto mr-lg-auto" id="colonne-gauche">
           <div class="container-fluid">
 
             <div class="row">
-              <div class="col-sm-12" align="center">
+              <div class="col-lg-12" align="center">
                 <h2>Mon profil</h2>
               </div>
             </div>
 
             <div class="row">
-              <div class="col-sm-12" align="center">
+              <div class="col-lg-12" align="center">
                 <img src="https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640" alt="Avatar" width="140px" height="140px">
               </div>
             </div>
 
             <div class="row content">
-              <div class="col-sm-12">
+              <div class="col-lg-12">
                 <form id="modificationProfilMedecinForm" @submit.prevent="sendEditProfil">
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Nom :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="nom" :placeholder="user.nom" type="text" v-model="editingProfile.nom">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Prenom :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="prenom" :placeholder="user.prenom" type="text" v-model="editingProfile.prenom">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Email :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="email" :placeholder="user.email" type="text" v-model="editingProfile.email">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Telephone :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-12" align="center">
+                    <div class="col-lg-12" align="center">
                       <button type="submit" class="btn">Modifier</button>
                     </div>
                   </div>
@@ -72,11 +72,11 @@
           </div>
         </div>
 
-        <div class="col-sm-6 ml-sm-auto mr-sm-auto h-50" id="colonne-droite">
+        <!-- <div class="col-lg-6 ml-lg-auto mr-lg-auto h-50" id="colonne-droite">
           <div class="container-fluid">
 
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-lg-12">
                 <h2>Jsp encore</h2>
               </div>
             </div>
@@ -86,7 +86,7 @@
             </div>
 
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>

@@ -4,103 +4,103 @@
     <div class="container">
       <div class="row h-100 d-flex align-items-center">
 
-        <div class="col-sm-6 ml-sm-auto mr-sm-auto" id="colonne-gauche">
+        <div class="col-lg-6 ml-lg-auto mr-lg-auto" id="colonne-gauche">
           <div class="container-fluid">
 
             <div class="row">
-              <div class="col-sm-12" align="center">
+              <div class="col-lg-12" align="center">
                 <h2>Mon profil</h2>
               </div>
             </div>
 
             <div class="row">
-              <div class="col-sm-12" align="center">
+              <div class="col-lg-12" align="center">
                 <img src="https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640" alt="Avatar" width="140px" height="140px">
               </div>
             </div>
 
             <div class="row content">
-              <div class="col-sm-12">
+              <div class="col-lg-12">
                 <form id="modificationProfilPatientForm" @submit.prevent="sendEditProfil">
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Nom :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="nom" :placeholder="user.nom" type="text" v-model="editingProfile.nom">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Prenom :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="prenom" :placeholder="user.prenom" type="text" v-model="editingProfile.prenom">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Email :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="email" :placeholder="user.email" type="text" v-model="editingProfile.email">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Telephone :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Taille :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="telephone" :placeholder="user.taille" type="text" v-model="editingProfile.taille">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Poids :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="telephone" :placeholder="user.poids" type="text" v-model="editingProfile.poids">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Date de naissance :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="telephone" :placeholder="user.dateNaissance" type="text" v-model="editingProfile.dateNaissance">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Age :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="telephone" :placeholder="user.age" type="text" v-model="editingProfile.age">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Sexe :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
-                      <select class="col-sm-12" v-model="editingProfile.sexe">
+                    <div class="col-lg-9 mr-lg-auto">
+                      <select class="col-lg-12" v-model="editingProfile.sexe">
                         <option value="" disabled selected>{{user.sexe}}</option>
                         <option value="Femme">Femme</option>
                         <option value="Homme">Homme</option>
@@ -110,16 +110,16 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-3 ml-sm-auto">
+                    <div class="col-lg-3 ml-lg-auto">
                       Profession :
                     </div>
-                    <div class="col-sm-9 mr-sm-auto">
+                    <div class="col-lg-9 mr-lg-auto">
                       <input class="input" name="telephone" :placeholder="user.profession" type="text" v-model="editingProfile.profession">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-12" align="center">
+                    <div class="col-lg-12" align="center">
                       <button type="submit" class="btn">Modifier</button>
                     </div>
                   </div>
@@ -131,11 +131,11 @@
           </div>
         </div>
 
-        <div class="col-sm-6 ml-sm-auto mr-sm-auto h-50" id="colonne-droite">
+        <div class="col-lg-6 ml-lg-auto mr-lg-auto h-50" id="colonne-droite">
           <div class="container-fluid">
 
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-lg-12">
                 <h2>Mes radios</h2>
               </div>
             </div>
@@ -203,6 +203,12 @@
 
   #patient #colonne-gauche .row {
     margin: 25px 0;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    #colonne-droite .container-fluid {
+      margin-bottom: 150px !important;
+    }
   }
 
   #patient img {

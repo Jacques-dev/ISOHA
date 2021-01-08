@@ -10,7 +10,7 @@
               <div class="col-sm-7">
                 <h2>Chercher un patient</h2>
               </div>
-              <div class="col-sm-2 ml-sm-auto mr-sm-auto">
+              <div class="col-lg-2 ml-sm-auto mr-sm-auto">
                 <button type="submit" class="btn">Rechercher</button>
               </div>
             </div>
@@ -78,6 +78,12 @@
 </script>
 
 <style scoped>
+
+  @media (max-width: 640px) {
+    #ajouterPatient {
+      margin-bottom: 150px
+    }
+  }
 
   #hopitale .input {
     width: 80%;

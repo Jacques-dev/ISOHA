@@ -27,7 +27,7 @@
 			<div class="container-fluid">
         <div class="row justify-content-center">
 
-					<div class="col-md-12 col-sm-12">
+					<div class="col-lg-12 col-sm-12">
 	          <div class="heading-title text-center">
 	            <h3 class="text-uppercase">L'equipe Analytics</h3>
 							<p class="p-top-30 half-txt">
@@ -38,7 +38,7 @@
 	          </div>
 					</div>
 
-          <div class="col-md-2 col-sm-2">
+          <div class="col-lg-2">
             <div class="team-member">
               <div class="team-img">
                 <img src="../images/pp-de-groupe/Jacques.jpg" alt="team member" class="img-responsive">
@@ -59,7 +59,7 @@
             </div>
           </div>
 
-					<div class="col-md-2 col-sm-2">
+					<div class="col-lg-2">
             <div class="team-member">
               <div class="team-img">
                 <img src="../images/pp-de-groupe/Glory.jpg" alt="team member" class="img-responsive">
@@ -82,7 +82,7 @@
             </div>
           </div>
 
-					<div class="col-md-2 col-sm-2">
+					<div class="col-lg-2">
             <div class="team-member">
               <div class="team-img">
                 <img src="../images/pp-de-groupe/Raphael.jpg" alt="team member" class="img-responsive">
@@ -103,7 +103,7 @@
             </div>
           </div>
 
-					<div class="col-md-2 col-sm-2">
+					<div class="col-lg-2">
             <div class="team-member">
               <div class="team-img">
                 <img src="../images/pp-de-groupe/Remi.jpg" alt="team member" class="img-responsive">
@@ -126,7 +126,7 @@
             </div>
           </div>
 
-					<div class="col-md-2 col-sm-2">
+					<div class="col-lg-2">
             <div class="team-member">
               <div class="team-img">
                 <img src="../images/pp-de-groupe/Paul.jpg" alt="team member" class="img-responsive">
@@ -199,9 +199,24 @@
     background-size: cover !important;
   }
 
+	@media (max-width: 640px) {
+		#first {
+			top: 107px !important;
+		}
+		#propos .logo {
+			display: none;
+		}
+	}
+	@media (min-width: 768px) and (max-width: 1024px) {
+		#propos .logo {
+			display: none;
+		}
+	}
+
   #first {
 		position: absolute;
-		top: 0;
+		top: 53.5px;
+		left: 0;
     background-image: url("../images/banner.png");
 		background-size: contain;
     height: 100vh;
@@ -211,12 +226,14 @@
 		background-image: url("../images/banner.png");
 		background-size: contain;
     height: 25vh;
+		left: 0;
 	}
 
 	#third {
 		background-image: url("../images/banner.png");
 		background-size: contain;
     height: 25vh;
+		left: 0;
 	}
 
 	#propos {
@@ -252,6 +269,12 @@
     font-size: 18px;
     font-weight: 500;
     margin: 0 0 150px 0 !important;
+	}
+
+	@media (max-width: 640px) {
+		#presentation, #team, #objectif {
+			border: 1px solid transparent !important;
+		}
 	}
 
 	#propos .heading-title {

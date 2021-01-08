@@ -1,5 +1,5 @@
 <template>
-  <div id="formulaire_ajouter_plat">
+  <div id="ajouterPatient">
 
     <form @submit.prevent="ajouterPatient" id="ajouterPatientForm">
       <div class="row">

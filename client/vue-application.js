@@ -1,4 +1,6 @@
+
 const Accueil = window.httpVueLoader('./components/Accueil.vue')
+const Analyse = window.httpVueLoader('./components/Analyse.vue')
 const Propos = window.httpVueLoader('./components/Propos.vue')
 const Connexion = window.httpVueLoader('./components/Connexion.vue')
 const Deconnexion = window.httpVueLoader('./components/Deconnexion.vue')
@@ -8,6 +10,7 @@ const Hopitale = window.httpVueLoader('./components/Hopitale.vue')
 
 const routes = [
   { path: '/', component: Accueil },
+  { path: '/analyse', component: Analyse },
   { path: '/propos', component: Propos },
   { path: '/connexion', component: Connexion },
   { path: '/deconnexion', component: Deconnexion },
@@ -155,7 +158,7 @@ function analyse() {
 function resulat() {
   setTimeout(function() {
     document.getElementById('analyse-en-cours').setAttribute("style", "display:none");
-    document.getElementById('analyse').setAttribute("style", "display:none");
+    document.getElementById('analyse-animation').setAttribute("style", "display:none");
     document.getElementById('analyse-resulat').setAttribute("style", "display:block; margin-top: 25px");
 
     const r = Math.floor(Math.random()*(1-0+1)+0)//(max-min+1)+min
@@ -169,7 +172,7 @@ function resulat() {
 
   }, 2000);
   document.getElementById('analyse-resulat').setAttribute("style", "display:none");
-  document.getElementById('analyse').setAttribute("style", "display:block");
+  document.getElementById('analyse-animation').setAttribute("style", "display:block");
 }
 
 // Hide Header on on scroll down
@@ -210,3 +213,13 @@ function hasScrolled() {
 
   lastScrollTop = st;
 }
+
+$(window).scroll(function() {
+  if ($(document).scrollTop() > 50) {
+    $('#bande-accueil').addClass('affix');
+    document.getElementById('bande-accueil').setAttribute("style", "visibility: visible");
+  } else {
+    document.getElementById('bande-accueil').setAttribute("style", "visibility: hidden");
+    $('#bande-accueil').removeClass('affix');
+  }
+});

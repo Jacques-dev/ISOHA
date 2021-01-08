@@ -57,6 +57,12 @@ footer {
   transition: bottom 0.2s ease-in-out;
 }
 
+@media (max-width: 640px) {
+  main {
+    margin: 15px !important;
+  }
+}
+
 footer h3 {
   color: #ffffff;
   font: normal 36px 'Cookie', cursive;
@@ -69,6 +75,8 @@ footer h3 span {
 .nav-down {
   bottom: -150px;
 }
+
+/* -------------------------------------------------------------------------- */
 
 .custom-btn {
   padding: 10px 25px;
@@ -115,10 +123,9 @@ footer h3 span {
   border: 1px solid var(--c1) !important;
 }
 
+/* -------------------------------------------------------------------------- */
+
 .topnav {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   overflow: hidden;
   background-color: var(--c5);
@@ -142,6 +149,16 @@ footer h3 span {
   left: 50%;
   transform: translateX(-50%);
 }
+@media (max-width: 640px) {
+  .topnav-middle {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .topnav-middle {
+    display: none;
+  }
+}
 
 .topnav-right {
   float: right;
@@ -151,6 +168,30 @@ footer h3 span {
   margin-right: 25px;
 }
 
+#bande-accueil {
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  position: fixed;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#bande-accueil h3 {
+  color: #ffffff;
+  font: normal 36px 'Cookie', cursive;
+}
+
+#bande-accueil h3 span {
+  color: #5383d3;
+}
+
+.affix {
+  background-color: #292c2f;
+}
+
+/* -------------------------------------------------------------------------- */
 
 .input {
   width: 80%;
@@ -168,12 +209,16 @@ footer h3 span {
   font-size: 15px;
 }
 
+/* -------------------------------------------------------------------------- */
+
 .column_design {
   padding: 25px 0;
   background: var(--c1);
   border-radius: 15px;
   box-shadow: 0px 0px 5px 3px black;
 }
+
+/* -------------------------------------------------------------------------- */
 
 .trapezoid {
   position: fixed;
@@ -239,64 +284,9 @@ footer h3 span {
 
 @media (max-width: 640px) {
   .trapezoid {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  	border-top: 100px solid transparent;
-  	border-left: 100px solid var(--c1);
-  	border-bottom: 100px solid var(--c1);
-    border-right: 100px solid transparent;
-  	height: 0;
-  	width: 0;
-    z-index: 2;
-    animation: bigger 3s;
-    opacity: 0.5
+    display: none
   }
   .trapezoid2 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  	border-top: 50px solid transparent;
-  	border-left: 50px solid var(--c1);
-  	border-bottom: 50px solid var(--c1);
-    border-right: 50px solid transparent;
-  	height: 0;
-  	width: 0;
-    z-index: 2;
-    animation: bigger2 3s;
-    opacity: 0.75
-  }
-
-  @keyframes bigger {
-  	0% {
-      opacity: 0;
-  		border-top-width: 0px;
-      border-left-width: 0px;
-      border-bottom-width: 0px;
-      border-right-width: 0px;
-  	}
-  	100% {
-      opacity: 0.5;
-      border-top-width: 100px;
-      border-left-width: 100px;
-      border-bottom-width: 100px;
-      border-right-width: 100px;
-  	}
-  }
-  @keyframes bigger2 {
-  	0% {
-      opacity: 0;
-  		border-top-width: 0px;
-      border-left-width: 0px;
-      border-bottom-width: 0px;
-      border-right-width: 0px;
-  	}
-  	100% {
-      opacity: 0.75;
-      border-top-width: 50px;
-      border-left-width: 50px;
-      border-bottom-width: 50px;
-      border-right-width: 50px;
-  	}
+    display: none
   }
 }

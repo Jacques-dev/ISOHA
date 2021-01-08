@@ -353,10 +353,10 @@
   })
 
   router.post('/radio', async (req, res) => {
-    // const radio = req.body.radio
-    const string = req.body.radio.split("/")
-    const string2 = string[0].split(":")
-    const radio = string2[0] + ":" + string[3]
+    const radio = req.body.radio
+    // const string = req.body.radio.split("/")
+    // const string2 = string[0].split(":")
+    // const radio = string2[0] + ":" + string[3]
     req.session.radio = radio
     res.send()
 

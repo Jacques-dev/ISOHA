@@ -64,7 +64,9 @@
 		methods: {
 			radioSauvegarde (e) {
 				const selectFile = e.target.files[0]
-				this.$emit('sauvegarde-radio', URL.createObjectURL(selectFile))
+				const blob = URL.createObjectURL(selectFile)
+				
+				this.$emit('sauvegarde-radio', blob)
 	    }
 		}
 	}

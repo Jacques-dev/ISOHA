@@ -10,13 +10,16 @@
 				</video>
 
 				<div class="col-lg-1 ml-sm-auto mr-sm-auto column_design" align="center">
-					<form enctype="multipart/form-data" id="fileUpload">
+					<form enctype="multipart/form-data" id="fileUpload" @submit.prevent="uploadSelectedFile($event)">
 
 						<label for="file" id="button">
 							<i class="fas fa-search"></i>
 						</label>
 
-						<input @change="radioSauvegarde($event)" onclick="animationChargement()" onchange="analyse()" id="file" type="file" name="file" accept=".jpg, .jpeg, .png" required/>
+						<input @change="selectFileToUpload($event)" onclick="animationChargement()" onchange="analyse()" id="file" type="file" name="file" accept=".jpg, .jpeg, .png" required/>
+						<input type="text" name="text">
+						<button type="submit">upload</button>
+
 					</form>
 				</div>
 
@@ -40,6 +43,7 @@
 								{{ result.text }}
 							</div>
 						</div>
+						{{ radio }}
 
 					</div>
 				</div>
@@ -54,22 +58,39 @@
 	module.exports = {
 		props: {
 			radio: { type: String },
-			result: { type: String }
+			result: { type: Object }
 		},
 		data () {
 			return {
-
+				file: ''
 			}
 		},
 		methods: {
-			radioSauvegarde (e) {
-				const selectFile = e.target.files[0]
-				const blob = URL.createObjectURL(selectFile)
-				
-				this.$emit('sauvegarde-radio', blob)
-	    }
+			selectFileToUpload (e) {
+			 	const selectFile = e.target.files[0]
+				this.file = selectFile
+	    },
+			async uploadSelectedFile(e) {
+				let file = document.getElementById("file").files[0]
+
+				let data = new FormData();
+				data.append('file', file, file.fileName);
+
+				axios.post('/api/upload', data, {
+		  		headers: {
+				    'accept': 'application/json',
+				    'Accept-Language': 'en-US,en;q=0.8',
+				    'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+			  	}
+				}).then((response) => {
+			    //handle success
+			  }).catch((error) => {
+			    //handle error
+			  });
+			}
 		}
 	}
+
 </script>
 
 <style scoped>

@@ -1,6 +1,7 @@
   const express = require('express')
   const router = express.Router()
   const bcrypt = require('bcrypt')
+  const multer = require('multer')
   const { Client } = require('pg')
 
   const client = new Client({
@@ -11,6 +12,17 @@
   })
 
   client.connect()
+
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'server/uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname)
+    }
+  })
+
+  var upload = multer({ storage: storage })
 
   router.post('/register', async (req, res) => {
     const nom = req.body.nom
@@ -354,12 +366,13 @@
 
   router.post('/radio', async (req, res) => {
     const radio = req.body.radio
-    // const string = req.body.radio.split("/")
-    // const string2 = string[0].split(":")
-    // const radio = string2[0] + ":" + string[3]
     req.session.radio = radio
     res.send()
+  })
 
+  router.post('/upload', upload.single('file'), (req, res) => {
+    console.log(req.file.originalname)
+    res.send({})
   })
 
 module.exports = router

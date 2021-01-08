@@ -6,7 +6,7 @@ const Connexion = window.httpVueLoader('./components/Connexion.vue')
 const Deconnexion = window.httpVueLoader('./components/Deconnexion.vue')
 const Patient = window.httpVueLoader('./components/Patient.vue')
 const Medecin = window.httpVueLoader('./components/Medecin.vue')
-const Hopitale = window.httpVueLoader('./components/Hopitale.vue')
+const ManagementPatient = window.httpVueLoader('./components/ManagementPatient.vue')
 
 const routes = [
   { path: '/', component: Accueil },
@@ -16,7 +16,7 @@ const routes = [
   { path: '/deconnexion', component: Deconnexion },
   { path: '/patient', component: Patient },
   { path: '/medecin', component: Medecin },
-  { path: '/hopitale', component: Hopitale }
+  { path: '/managementpatient', component: ManagementPatient }
 ]
 
 

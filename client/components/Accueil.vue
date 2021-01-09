@@ -2,6 +2,8 @@
 <template>
 	<div id="accueil">
 
+		<div id="title">ISOHA</div>
+
     <div id="accueil-background"></div>
 
 		<div class="container d-flex align-items-center">
@@ -53,8 +55,21 @@
 
 <style scoped>
 
-	#accueil {
+	#accueil #title {
+		position: absolute;
+		top: 25vh;
+		right: 15vw;
+		font: normal 100px 'Cookie', cursive;
+		padding: 25px;
+		color: var(--c4);
 
+		border: 5px solid hsl(0, 0%, 40%);
+
+	  background: hsl(0, 0%, 20%);
+
+	  outline: 5px solid hsl(0, 0%, 60%);
+
+	  box-shadow: 0 0 0 10px hsl(0, 0%, 80%), 0 0 0 15px hsl(0, 0%, 90%);
   }
 
 	#accueil #accueil-background {

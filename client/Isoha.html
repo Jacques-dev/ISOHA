@@ -58,10 +58,12 @@
       <div class="trapezoid2"></div>
 
       <div class="topnav">
-        <router-link type="button" class="custom-btn nav-link active" v-if="medecin || patient" to='/'>Accueil</router-link>
-        <router-link type="button" class="custom-btn nav-link active" v-if="medecin" to='/analyse'>Analyse</router-link>
-        <router-link type="button" class="custom-btn nav-link" v-if="medecin" to='/managementpatient'>Nos Patients</router-link>
-        <router-link type="button" class="custom-btn nav-link" to='/propos'>A propos</router-link>
+        <router-link class="custom-btn nav-link" to='/'>Accueil</router-link>
+        <router-link class="custom-btn nav-link" to='/propos'>A propos</router-link>
+        <router-link class="custom-btn nav-link" v-if="medecin" to='/analyse'>Lancer une analyse</router-link>
+        <router-link class="custom-btn nav-link" v-if="medecin" to='/managementpatient'>Nos Patients</router-link>
+        <router-link class="custom-btn nav-link" v-if="medecin" to='/tuto'>Tuto</router-link>
+
 
 
         <div class="topnav-middle">
@@ -83,7 +85,7 @@
           :recherches="recherches"
           :radio="radio"
           :result="result"
-          @sauvegarde-radio="radioSauvegarde"
+          @sauvegarde-radio="sauvegardeRadio"
           @update-profile="updateProfile"
           @register="register"
           @ajouter-patient="register"
@@ -147,7 +149,6 @@
               <a href="#"><i class="fa fa-facebook"></i></a>
           		<a href="#"><i class="fa fa-twitter"></i></a>
           		<a href="#"><i class="fa fa-linkedin"></i></a>
-          		<a href="#"><i class="fa fa-github"></i></a>
             </div>
             <div class="col-sm-6">
               <h3 style="float:right">ISOHA<span>Team</span></h3>

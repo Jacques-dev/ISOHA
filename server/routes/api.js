@@ -345,19 +345,31 @@
       values: [nom, prenom]
     })
 
-    const log = {
-      nom: result.rows[0].nom,
-      prenom: result.rows[0].prenom,
-      email: result.rows[0].email,
-      telephone: result.rows[0].telephone,
-    }
+    if (result.rowCount == 1) {
+      const log = {
+        nom: result.rows[0].nom,
+        prenom: result.rows[0].prenom,
+        email: result.rows[0].email,
+        telephone: result.rows[0].telephone,
+      }
 
-    res.json(log)
+      res.json(log)
+    } else {
+      res.status(400).json({ message: "no such user exist" })
+    }
   })
 
-  router.post('/radio', async (req, res) => {
-    const radio = req.body.radio
-    req.session.radio = radio
+  router.post('/loadRadio', async (req, res) => {
+    const email = req.body.email
+
+    select = "SELECT image FROM radios WHERE email=$1"
+
+    const result = await client.query({
+      text: select,
+      values: [email]
+    })
+
+    req.session.radio = result.rows[0].image
     res.send()
   })
 

@@ -7,6 +7,7 @@ const Deconnexion = window.httpVueLoader('./components/Deconnexion.vue')
 const Patient = window.httpVueLoader('./components/Patient.vue')
 const Medecin = window.httpVueLoader('./components/Medecin.vue')
 const ManagementPatient = window.httpVueLoader('./components/ManagementPatient.vue')
+const Tuto = window.httpVueLoader('./components/Tuto.vue')
 
 const routes = [
   { path: '/', component: Accueil },
@@ -16,7 +17,8 @@ const routes = [
   { path: '/deconnexion', component: Deconnexion },
   { path: '/patient', component: Patient },
   { path: '/medecin', component: Medecin },
-  { path: '/managementpatient', component: ManagementPatient }
+  { path: '/managementpatient', component: ManagementPatient },
+  { path: '/tuto', component: Tuto }
 ]
 
 
@@ -63,7 +65,7 @@ var app = new Vue({
     this.user = res.data.user
     this.medecin = res.data.medecin
     this.patient = res.data.patient
-    this.radio = res.data.radio
+    this.radio = null
 
   },
   methods: {
@@ -127,6 +129,12 @@ var app = new Vue({
           timer: 2000,
         })
       }
+    },
+    async sauvegardeRadio (email) {
+      await axios.post('/api/loadRadio/', 'email=' + email)
+      const res = await axios.get('/api/me')
+      this.radio = res.data.radio
+      router.push('/Analyse')
     }
   }
 })

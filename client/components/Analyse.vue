@@ -5,10 +5,6 @@
 
 			<div class="row h-100 d-flex align-items-center">
 
-				<video autoplay loop controls muted id="video" class="col-lg-4" align="center">
-		    	<source src="../videos/video.mp4" type="video/mp4">
-				</video>
-
 				<div class="col-lg-1 ml-sm-auto mr-sm-auto column_design" align="center">
 					<form enctype="multipart/form-data" id="fileUpload" @submit.prevent="uploadSelectedFile($event)">
 
@@ -17,12 +13,12 @@
 						</label>
 
 						<input @change="selectFileToPreview($event)" onclick="animationChargement()" onchange="analyse()" id="file" type="file" name="file" accept=".jpg, .jpeg, .png" required/>
-						<button type="submit" class="btn">upload</button>
+						<!-- <button type="submit" class="btn" id="upload">Analyser</button> -->
 
 					</form>
 				</div>
 
-				<div class="col-lg-4" align="center">
+				<div class="col-lg-4 mr-sm-auto" align="center">
 					<div class="column_design" :style="{ background: result.color }">
 						<div class="cs-loader-inner">
 							<label id="animation1">●</label>
@@ -32,7 +28,10 @@
 							<label id="animation5">●</label>
 							<label id="animation6">●</label>
 						</div>
-						<img :src="file" id="radio">
+
+						<img v-if="radio" :src="radio" id="radio">
+						<img v-else :src="file" id="radio">
+
 						<div id="analyse-content">
 							<div id="analyse-en-cours">
 								Analyse en cours
@@ -53,6 +52,7 @@
 </template>
 
 <script>
+
 	module.exports = {
 		props: {
 			radio: { type: String },
@@ -65,6 +65,7 @@
 		},
 		methods: {
 			selectFileToPreview (e) {
+				this.radio = null
 			 	const selectFile = e.target.files[0]
 				this.file = URL.createObjectURL(selectFile)
 	    },
@@ -86,7 +87,13 @@
 			    //handle error
 			  });
 			}
-		}
+		},
+		mounted(){
+			if(this.radio){
+				animationChargement()
+				analyse()
+			}
+		},
 	}
 
 </script>
@@ -97,8 +104,8 @@
 		margin: 0;
 	}
 
-	#analyse #video {
-		z-index: 3;
+	#analyse #upload {
+		margin-top: 15px;
 	}
 
 	#analyse #radio {

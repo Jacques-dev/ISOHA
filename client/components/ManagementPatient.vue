@@ -15,8 +15,8 @@
               </div>
             </div>
 
-            <input class="input" type="text" placeholder="nom du patient" v-model="chercher.nom">
-            <input class="input" type="text" placeholder="prénom du patient" v-model="chercher.prenom">
+            <input class="input" type="text" placeholder="nom du patient" v-model="chercher.nom" required>
+            <input class="input" type="text" placeholder="prénom du patient" v-model="chercher.prenom" required>
 
           </form>
           <div id="resultats-recherche">
@@ -35,7 +35,7 @@
                   {{ patient.telephone }}
                 </div>
               </div>
-              <form class="row">
+              <div class="row">
 
                 <div class="col-lg-6">
                   <div class="row wrapper">
@@ -48,14 +48,11 @@
 
                 <div class="col-lg-6">
                   <div class="row wrapper">
-                    <input @Click="analyserRadio($event, patient.email)" type="button" name="button"/>
-                    <label for="button" class="btn-3">
-                      <span>Analyser radio</span>
-                    </label>
+                    <button id="analyserRadio" class="btn-3" @click="analyserRadio(patient.email)">Analyse la radio</button>
                   </div>
                 </div>
 
-              </form>
+              </div>
 
             </div>
           </div>
@@ -64,10 +61,6 @@
         <div class="col-sm-4 ml-sm-auto column_design">
           <ajouter-patient @ajouter-patient="ajouterPatient"></ajouter-patient>
         </div>
-
-        <!-- <div v-if="nouveauPatient">
-          <ajouter-radio @ajouter-radio="ajouterRadio"></ajouter-radio>
-        </div> -->
 
       </div>
     </div>
@@ -105,11 +98,10 @@
           this.$emit('chercher-patient', this.chercher)
         }
       },
-      ajouterRadio (e, email) {
+      async ajouterRadio (e, email) {
         let file = document.getElementById("file").files[0]
         let data = new FormData();
         data.append('file', file, file.fileName);
-
 
         axios.post('/api/upload/' + email, data, {
           headers: {
@@ -127,6 +119,10 @@
             timer: 2000,
           })
         });
+      },
+      analyserRadio(email) {
+        this.radio = null
+        this.$emit('sauvegarde-radio', email);
       }
 		}
   }
@@ -161,17 +157,52 @@
     text-align: center;
   }
 
-  #managementPatient [type=file],
-  #managementPatient [type=button] {
-    height: 0;
-    overflow: hidden !important;
-    width: 0;
-    padding: 0;
+  #managementpatient #analyserRadio {
     border: none;
+    color: var(--c1);
+    background-color: var(--c4);
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 1rem;
+    outline: none;
+    padding: 1rem 50px;
+    position: relative;
+    transition: all 0.3s;
+    vertical-align: middle;
+    font-size: 15px;
+    font-weight: 500;
   }
 
-  #managementPatient [type=file] + label,
-  #managementPatient [type=button] + label {
+  #managementpatient #analyserRadio::before {
+    color: var(--c1);
+    font-family: "Font Awesome 5 Pro";
+    content: "";
+    font-size: 130%;
+    height: 100%;
+    left: 0;
+    line-height: 2.6;
+    position: absolute;
+    top: -180%;
+    transition: all 0.3s;
+    width: 100%;
+  }
+
+  #managementpatient #analyserRadio:hover {
+    background-color: #ae144f;
+    color: transparent;
+  }
+
+  #managementpatient #analyserRadio:hover::before {
+    top: 0;
+  }
+
+  #managementPatient [type=file] {
+    height: 0;
+    overflow: hidden;
+    width: 0;
+  }
+
+  #managementPatient [type=file] + label {
     border: none;
     border-radius: 5px;
     color: #fff;
@@ -187,27 +218,24 @@
     vertical-align: middle;
   }
 
-  #managementPatient [type=file] + label:hover,
-  #managementPatient [type=button] + label:hover {
+  #managementPatient [type=file] + label:hover {
     background-color: var(--c5);
   }
-  #managementPatient [type=file] + label.btn-3,
-  #managementPatient [type=button] + label.btn-3 {
+  #managementPatient [type=file] + label.btn-3 {
     background-color: var(--c4);
     border-radius: 0;
     overflow: hidden;
   }
-  #managementPatient [type=file] + label.btn-3 span,
-  #managementPatient [type=button] + label.btn-3 span {
+  #managementPatient [type=file] + label.btn-3 span {
     display: inline-block;
     height: 100%;
     transition: all 0.3s;
     width: 100%;
   }
-  #managementPatient [type=file] + label.btn-3::before,
-  #managementPatient [type=button] + label.btn-3::before {
+  #managementPatient [type=file] + label.btn-3::before {
     color: var(--c1);
     font-family: "Font Awesome 5 Pro";
+    content: "";
     font-size: 130%;
     height: 100%;
     left: 0;
@@ -217,22 +245,14 @@
     transition: all 0.3s;
     width: 100%;
   }
-  #managementPatient [type=file] + label.btn-3::before {
-    content: "";
-  }
-  #managementPatient [type=button] + label.btn-3::before {
-    content: "";
-  }
-  #managementPatient [type=file] + label.btn-3:hover,
-  #managementPatient [type=button] + label.btn-3:hover {
+
+  #managementPatient [type=file] + label.btn-3:hover {
     background-color: #ae144f;
   }
-  #managementPatient [type=file] + label.btn-3:hover span,
-  #managementPatient [type=button] + label.btn-3:hover span {
+  #managementPatient [type=file] + label.btn-3:hover span {
     transform: translateY(300%);
   }
-  #managementPatient [type=file] + label.btn-3:hover::before,
-  #managementPatient [type=button] + label.btn-3:hover::before {
+  #managementPatient [type=file] + label.btn-3:hover::before {
     top: 0;
   }
 

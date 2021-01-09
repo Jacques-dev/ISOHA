@@ -36,7 +36,6 @@
     const poids = req.body.poids
     const sexe = req.body.sexe
     const profession = req.body.profession
-    const radio = req.body.radio
 
     const sql = "SELECT * FROM utilisateur WHERE email=$1"
 
@@ -57,13 +56,6 @@
         await client.query({
           text: insert_patient_medecin,
           values: [nom, prenom, email, telephone, dateNaissance, age, taille, poids, sexe, profession]
-        })
-        res.send()
-
-        insert_patient_radio = "INSERT INTO radios (email, image) VALUES ($1, $2)"
-        await client.query({
-          text: insert_patient_radio,
-          values: [email, radio]
         })
         res.send()
 
@@ -134,8 +126,7 @@
             values: [email]
           })
 
-          req.session.userRadio = result3.rows
-          console.log(req.session.userRadio)
+          req.session.userRadio = result3.rows[0].image
           res.send()
 
         } else if (email.match(/(medecin-)+[a-z]+(-)+[a-z]+(-efrei_2023)/gm)) {
@@ -370,9 +361,31 @@
     res.send()
   })
 
-  router.post('/upload', upload.single('file'), (req, res) => {
-    console.log(req.file.originalname)
-    res.send({})
+  router.post('/upload/:email', upload.single('file'), async (req, res) => {
+    const email = req.params.email
+    const image = req.file.originalname
+
+    select = "SELECT image FROM radios WHERE email=$1"
+
+    const result = await client.query({
+      text: select,
+      values: [email]
+    })
+
+    if (result.rows == 0) {
+
+      const insert = "INSERT INTO radios (email, image) VALUES ($1, $2)"
+      await client.query({
+        text: insert,
+        values: [email, image]
+      })
+      res.send({})
+
+    } else {
+      res.status(404).json({ message: "not logged" })
+    }
+
+
   })
 
 module.exports = router

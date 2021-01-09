@@ -46,7 +46,7 @@
               <div class="team-hover">
                 <div class="desk">
                   <h4>Chef de projet & Architect</h4>
-                  <p>Responsable de la réalisation globale du projet et des suivi des objectifs</p>
+                  <p>Responsable de la réalisation globale du projet et du suivi des objectifs</p>
                 </div>
                 <div class="s-link">
                   <a href="#"><i class="fa fa-linkedin"></i></a>
@@ -69,6 +69,7 @@
                   <h4>Maître d’ouvrage</h4>
                   <p>
 										Identifier les différents types d’utilisateurs et rédiger les scénarios fonctionnels
+										& fournir les fonctionnalités du projet en fonction du cahier des charges
 									</p>
                 </div>
                 <div class="s-link">
@@ -112,7 +113,8 @@
                 <div class="desk">
                   <h4>Chef Designer</h4>
                   <p>
-										Fournir les fonctionnalités du projet en fonction du cahier des charges
+										Définit la charte graphique, et le rendu visuel final avec des maquettes
+										faites en amont
 									</p>
                 </div>
                 <div class="s-link">
@@ -135,7 +137,7 @@
                 <div class="desk">
                   <h4>Responsable temps et avancés</h4>
                   <p>
-										Mettre en place un planning afin d’organiser le
+										Met en place un planning afin d’organiser le
 			              travail et gérer le coût en heures des étapes
 			              à réaliser en respectant les délais
 									</p>

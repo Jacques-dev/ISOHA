@@ -71,7 +71,7 @@ var app = new Vue({
       try {
         var route = 'nom=' + user.nom + '&prenom=' + user.prenom + '&email=' + user.email + '&password=' + user.password + '&telephone=' + user.telephone
         route += '&dateNaissance=' + user.dateNaissance + '&age=' + user.age + '&taille=' + user.taille + '&poids=' + user.poids + '&sexe=' + user.sexe
-        route += '&profession=' + user.profession + '&radio=' + user.radio
+        route += '&profession=' + user.profession
         await axios.post('/api/register/',route)
         if (user.email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
         } else {
@@ -127,11 +127,6 @@ var app = new Vue({
           timer: 2000,
         })
       }
-    },
-    async radioSauvegarde (radio) {
-      await axios.post('/api/radio/', 'radio=' + radio)
-      const res = await axios.get('/api/me')
-      this.radio = res.data.radio
     }
   }
 })

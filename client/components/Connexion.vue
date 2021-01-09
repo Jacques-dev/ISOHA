@@ -96,9 +96,7 @@
 			},
 			register () {
         var email = document.getElementById("email_register").value;
-        if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
-          this.$emit('register', this.editRegister);
-				} else if (email.match(/(medecin-)+[a-z]+(-)+[a-z]+(-efrei_2023)/gm)) {// medecin-jacques-tellier-efrei_2023
+        if (email.match(/(medecin-)+[a-z]+(-)+[a-z]+(-efrei_2023)/gm)) {// medecin-jacques-tellier-efrei_2023
 					this.$emit('register', this.editRegister);
         } else {
 					asAlertMsg({

@@ -136,14 +136,12 @@
 
             <div class="row">
               <div class="col-lg-12">
-                <h2>Mes radios</h2>
+                <h2>Ma radio</h2>
               </div>
             </div>
 
             <div class="row content h-100">
-              <div v-for="r in user.radio">
-                <img :src="r">
-              </div>
+              <img :src="user.radio">
             </div>
 
           </div>
@@ -205,6 +203,11 @@
 
   #patient #colonne-gauche .row {
     margin: 25px 0;
+  }
+
+  #patient #colonne-droite img {
+    width: 100%;
+    border-radius: 0;
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {

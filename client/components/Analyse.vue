@@ -16,9 +16,8 @@
 							<i class="fas fa-search"></i>
 						</label>
 
-						<input @change="selectFileToUpload($event)" onclick="animationChargement()" onchange="analyse()" id="file" type="file" name="file" accept=".jpg, .jpeg, .png" required/>
-						<input type="text" name="text">
-						<button type="submit">upload</button>
+						<input @change="selectFileToPreview($event)" onclick="animationChargement()" onchange="analyse()" id="file" type="file" name="file" accept=".jpg, .jpeg, .png" required/>
+						<button type="submit" class="btn">upload</button>
 
 					</form>
 				</div>
@@ -33,7 +32,7 @@
 							<label id="animation5">●</label>
 							<label id="animation6">●</label>
 						</div>
-						<img :src="radio" id="radio">
+						<img :src="file" id="radio">
 						<div id="analyse-content">
 							<div id="analyse-en-cours">
 								Analyse en cours
@@ -43,7 +42,6 @@
 								{{ result.text }}
 							</div>
 						</div>
-						{{ radio }}
 
 					</div>
 				</div>
@@ -66,9 +64,9 @@
 			}
 		},
 		methods: {
-			selectFileToUpload (e) {
+			selectFileToPreview (e) {
 			 	const selectFile = e.target.files[0]
-				this.file = selectFile
+				this.file = URL.createObjectURL(selectFile)
 	    },
 			async uploadSelectedFile(e) {
 				let file = document.getElementById("file").files[0]

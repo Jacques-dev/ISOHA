@@ -25,18 +25,18 @@
 									<input type="text" v-model="editLogin.password" placeholder="..." name="password" required>
 								</p>
 
-								<button type="submit" name="submit" id="login"/>Connexion</button>
+								<button type="submit" name="submit" id="login">Connexion</button>
 							</form>
 
 							<form v-else @submit.prevent="register">
 								<p class='field'>
 									<label for='nom'>NOM</label>
-									<input type="text" v-model="editRegister.nom" name="nom" placeholder="Entrer votre nom" required/>
+									<input type="text" v-model="editRegister.nom" name="nom" placeholder="Entrez votre nom" required/>
 								</p>
 
 								<p class='field'>
 									<label for='prenom'>PRENOM</label>
-									<input type="text" v-model="editRegister.prenom" name="prenom" placeholder="Entrer votre prénom" required/>
+									<input type="text" v-model="editRegister.prenom" name="prenom" placeholder="Entrez votre prénom" required/>
 								</p>
 
 								<p class='field'>
@@ -54,7 +54,7 @@
 									<input type="text" v-model="editRegister.password" placeholder="Entrez votre mot de passe" name="password" required>
 								</p>
 
-								<button type="submit" name="submit" id="register"/>S'enregistrer</button>
+								<button type="submit" name="submit" id="register">S'enregistrer</button>
 								<button @click="switchForm()" title="S'enregistrer" class="switchForm">J'ai un compte</button>
 							</form>
 

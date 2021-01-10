@@ -48,7 +48,7 @@
 
                 <div class="col-lg-6">
                   <div class="row wrapper">
-                    <button id="analyserRadio" class="btn-3" @click="analyserRadio(patient.email)">Analyse la radio</button>
+                    <button id="analyserRadio" class="btn-3" @click="analyserRadio(patient.email)">Analyser la radio</button>
                   </div>
                 </div>
 

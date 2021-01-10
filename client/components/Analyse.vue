@@ -176,7 +176,7 @@
 		0% {
 			opacity: 0;
 			transform: translateX(-250px);
-	    rotate 0
+	    rotate : 0
 		}
 		33% {
 			opacity: 1;

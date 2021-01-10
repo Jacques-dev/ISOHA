@@ -22,7 +22,7 @@
 						<div id="img1" class="backgrounds"></div>
 				</div>
 				<div class="col-lg-4">
-						<h3>Suivit</h3>
+						<h3>Suivi</h3>
 						<div id="img2" class="backgrounds"></div>
 				</div>
 				<div class="col-lg-4">

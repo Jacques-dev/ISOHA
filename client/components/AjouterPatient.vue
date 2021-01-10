@@ -138,7 +138,7 @@
             asAlertMsg({
               type: "warning",
               title: "Attention",
-              message: "La date de naissance que vous avez entré n'est pas correct"
+              message: "La date de naissance que vous avez entré n'est pas correcte"
             })
           }
         } else {

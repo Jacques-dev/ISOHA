@@ -11,7 +11,7 @@
         </video>
 
         <div class="col-lg-4 ml-lg-auto mr-lg-auto column_design">
-          Voici une déponstration des fonctinnalités de ISOHA en vidéo
+          Voici une déponstration des fonctionnalités de ISOHA en vidéo
         </div>
 
       </div>

@@ -31,9 +31,9 @@
 	          <div class="heading-title text-center">
 	            <h3 class="text-uppercase">L'equipe Analytics</h3>
 							<p class="p-top-30 half-txt">
-				        Nous sommes 5 etudiants de L3 news à l'EFREI paris de la promotion 2003.
+				        Nous sommes 5 etudiants à l'EFREI paris de la promotion L3 NEW 2023.
 				        Dans le cadre d'un projet transvese nous avons fondé l'equipe Analytics.
-				        L'equipe Analytics a pour but d'elaborer le projer ISOHA (Intelligent Software for Online Health Analytics).
+				        L'equipe Analytics a pour but d'élaborer le projer ISOHA (Intelligent Software for Online Health Analytics).
 							</p>
 	          </div>
 					</div>
@@ -135,7 +135,7 @@
               </div>
               <div class="team-hover">
                 <div class="desk">
-                  <h4>Responsable temps et avancés</h4>
+                  <h4>Responsable temps et avancées</h4>
                   <p>
 										Met en place un planning afin d’organiser le
 			              travail et gérer le coût en heures des étapes
@@ -164,7 +164,7 @@
 	    <br/>
 	    <p>
 	      Il existe déjà quelques systèmes de DMP dans le monde. <br/>
-	      Alors il est normal de ce demmander ce que ISHOA peut apporter: <br/> <br/>
+	      Alors il est normal de se demmander ce que ISHOA peut apporter: <br/> <br/>
 	      Le projet ISOHA a pour ambition d’ajouter du machine-Learning dans le traitement de l’information médicale. <br/>
 	      En effet, ISHOA utilise l’intelligence artificielle pour émettre un premier diagnostic pour la maladie <br/>
 	      d’Alzheimer. Ce processus est possible grâce à une IRM du cerveau du patient.

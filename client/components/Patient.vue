@@ -131,7 +131,7 @@
           </div>
         </div>
 
-        <div class="col-lg-6 ml-lg-auto mr-lg-auto h-50" id="colonne-droite">
+        <div class="col-lg-6 ml-lg-auto mr-lg-auto" id="colonne-droite">
           <div class="container-fluid">
 
             <div class="row">
@@ -140,14 +140,23 @@
               </div>
             </div>
 
-            <div class="row content h-100">
-              <img :src="user.radio">
+            <div class="row">
+              <div class="col-lg-12">
+                <img :src="user.radio">
+              </div>
+            </div>
+
+            <div class="row" id="result-radio-analyse-patient">
+              <div class="col-lg-12 column_design">
+                Résultat d'analyse : {{ user.resultRadio }}
+              </div>
             </div>
 
           </div>
         </div>
 
       </div>
+
     </div>
 
   </div>
@@ -157,7 +166,13 @@
   module.exports = {
     props: {
       user: {type: Object },
-    },
+			radio: { type: String }
+		},
+		mounted() {
+			if (this.radio.image) {
+				this.radio.image = null
+			}
+		},
     data () {
       return {
         editingProfile: {
@@ -201,6 +216,10 @@
 
 <style scoped>
 
+  #result-radio-analyse-patient {
+    margin: 25px 0;
+  }
+
   #patient #colonne-gauche .row {
     margin: 25px 0;
   }
@@ -210,11 +229,9 @@
     border-radius: 0;
   }
 
-  @media (min-width: 768px) and (max-width: 1024px) {
-    #colonne-droite .container-fluid {
-      margin-bottom: 150px !important;
-    }
-  }
+  /* #colonne-droite .container-fluid {
+    margin-bottom: 500px !important;
+  } */
 
   #patient img {
     border-radius: 3px;
@@ -224,11 +241,6 @@
     display: block;
     list-style: none;
     width: 100%;
-  }
-
-  #patient .content {
-    background-color: #96d3ff;
-    border-radius: 3px;
   }
 
   #patient .content {

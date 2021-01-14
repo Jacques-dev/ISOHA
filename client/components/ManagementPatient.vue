@@ -75,7 +75,9 @@
       AjouterPatient,
     },
     props: {
+      radio: { type: String },
       recherches: { type: Array, default: [] },
+      result: { type: Object }
     },
     data () {
 			return {
@@ -121,7 +123,8 @@
         });
       },
       analyserRadio(email) {
-        this.radio = null
+        this.radio.analyzing = true
+        this.radio.emailPatient = email
         this.$emit('sauvegarde-radio', email);
       }
 		}

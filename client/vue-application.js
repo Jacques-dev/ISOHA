@@ -48,12 +48,17 @@ var app = new Vue({
       poids: null,
       sexe: null,
       profession: null,
-      radio: null
+      radio: null,
+      resultRadio: null
     },
     medecin: null,
     patient: null,
     recherches: [],
-    radio: null,
+    radio: {
+      image: null,
+      analyzing: false,
+      emailPatient: null
+    },
     result: {
       color: null,
       text: null
@@ -65,7 +70,7 @@ var app = new Vue({
     this.user = res.data.user
     this.medecin = res.data.medecin
     this.patient = res.data.patient
-    this.radio = null
+    this.radio.image = null
 
   },
   methods: {
@@ -95,7 +100,7 @@ var app = new Vue({
       this.user = res.data.user
       this.medecin = res.data.medecin
       this.patient = res.data.patient
-      this.radio = res.data.radio
+      this.radio.image = res.data.radio
 
       router.push('/')
 
@@ -105,7 +110,7 @@ var app = new Vue({
       this.user = res.data.user
       this.medecin = res.data.medecin
       this.patient = res.data.patient
-      this.radio = res.data.radio
+      this.radio.image = res.data.radio
       this.patientRecherche = []
       router.push('/connexion')
     },
@@ -133,8 +138,11 @@ var app = new Vue({
     async sauvegardeRadio (email) {
       await axios.post('/api/loadRadio/', 'email=' + email)
       const res = await axios.get('/api/me')
-      this.radio = res.data.radio
+      this.radio.image = res.data.radio
       router.push('/Analyse')
+    },
+    async sauvegardeResult (result) {
+      await axios.post('/api/saveRadioResult/', 'result=' + result + "&email=" + this.radio.emailPatient)
     }
   }
 })
@@ -153,9 +161,9 @@ function animationChargement() {
 function analyse() {
   app.result.color = "white"
   app.result.text = ""
-  document.getElementById('analyse-content').setAttribute("style", "display:block");
-  document.getElementById('analyse-en-cours').setAttribute("style", "display:block");
-  resulat();
+  document.getElementById('analyse-content').setAttribute("style", "display:block")
+  document.getElementById('analyse-en-cours').setAttribute("style", "display:block")
+  return resulat()
 }
 
 function resulat() {
@@ -163,19 +171,20 @@ function resulat() {
     document.getElementById('analyse-en-cours').setAttribute("style", "display:none");
     document.getElementById('analyse-animation').setAttribute("style", "display:none");
     document.getElementById('analyse-resulat').setAttribute("style", "display:block; margin-top: 25px");
-
-    const r = Math.floor(Math.random()*(1-0+1)+0)//(max-min+1)+min
-    if (r) {
-      app.result.color = "#1abc69"
-      app.result.text = "Aucune lésion du tissu nerveux détecté"
-    } else {
-      app.result.color = "#bc1a1a"
-      app.result.text = "Des lésions du tissu nerveux ont été détectées"
-    }
-
   }, 2000);
   document.getElementById('analyse-resulat').setAttribute("style", "display:none");
   document.getElementById('analyse-animation').setAttribute("style", "display:block");
+  const r = Math.floor(Math.random()*(1-0+1)+0)//(max-min+1)+min
+  if (r) {
+    app.result.color = "#1abc69"
+    app.result.text = "Aucune lésion du tissu nerveux détecté"
+  } else {
+    app.result.color = "#bc1a1a"
+    app.result.text = "Des lésions du tissu nerveux ont été détectées"
+  }
+
+  app.radio.analyzing = false
+  return app.result.text
 }
 
 // Hide Header on on scroll down

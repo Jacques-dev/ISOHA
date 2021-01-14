@@ -98,7 +98,13 @@
   module.exports = {
     props: {
       user: {type: Object },
-    },
+			radio: { type: String },
+		},
+		mounted() {
+			if (this.radio.image) {
+				this.radio.image = null
+			}
+		},
     data () {
       return {
         editingProfile: {

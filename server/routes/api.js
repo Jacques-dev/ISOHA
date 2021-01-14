@@ -119,7 +119,7 @@
           req.session.userSexe = result2.rows[0].sexe
           req.session.userProfession = result2.rows[0].profession
 
-          select_radio = "SELECT image FROM radios WHERE email=$1"
+          select_radio = "SELECT image, result FROM radios WHERE email=$1"
 
           const result3 = await client.query({
             text: select_radio,
@@ -127,6 +127,7 @@
           })
 
           req.session.userRadio = result3.rows[0].image
+          req.session.userRadioResult = result3.rows[0].result
           res.send()
 
         } else if (email.match(/(medecin-)+[a-z]+(-)+[a-z]+(-efrei_2023)/gm)) {
@@ -172,6 +173,8 @@
     req.session.userSexe = null
     req.session.userProfession = null
     req.session.userRadio = null
+    req.session.userRadioResult = null
+    req.session.radio = null
 
     user = {
       nom: req.session.userName,
@@ -184,7 +187,8 @@
       poids: req.session.userPoids,
       sexe: req.session.userSexe,
       profession: req.session.userProfession,
-      radio: req.session.userRadio
+      radio: req.session.userRadio,
+      resultRadio: req.session.userRadioResult
     }
     const log = {
       patient: req.session.patient,
@@ -212,7 +216,8 @@
           poids: req.session.userPoids,
           sexe: req.session.userSexe,
           profession: req.session.userProfession,
-          radio: req.session.userRadio
+          radio: req.session.userRadio,
+          resultRadio: req.session.userRadioResult
         }
       } else {
         user = {
@@ -370,6 +375,18 @@
     })
 
     req.session.radio = result.rows[0].image
+    res.send()
+  })
+
+  router.post('/saveRadioResult', async (req, res) => {
+    const email = req.body.email
+    const result = req.body.result
+
+    var update = "UPDATE radios SET result = $2 WHERE email = $1"
+    await client.query({
+      text: update,
+      values: [email, result]
+    })
     res.send()
   })
 

@@ -29,7 +29,8 @@
 							<label id="animation6">●</label>
 						</div>
 
-						<img v-if="radio" :src="radio" id="radio">
+						<img v-if="radio.image" :src="radio.image" id="radio">
+
 						<img v-else :src="file" id="radio">
 
 						<div id="analyse-content">
@@ -65,7 +66,7 @@
 		},
 		methods: {
 			selectFileToPreview (e) {
-				this.radio = null
+				this.radio.image = null
 			 	const selectFile = e.target.files[0]
 				this.file = URL.createObjectURL(selectFile)
 	    },
@@ -88,11 +89,15 @@
 			  });
 			}
 		},
-		mounted(){
-			if(this.radio){
+		mounted() {
+			this.result.color = "white"
+
+			if (this.radio.image) {
 				animationChargement()
-				analyse()
+				const result = analyse()
+				this.$emit('sauvegarde-result', result);
 			}
+
 		},
 	}
 

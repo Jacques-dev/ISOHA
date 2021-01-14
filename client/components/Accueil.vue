@@ -40,7 +40,12 @@
 <script>
 	module.exports = {
 		props: {
-
+			radio: { type: String },
+		},
+		mounted() {
+			if (this.radio.image) {
+				this.radio.image = null
+			}
 		},
 		data () {
 			return {
@@ -62,13 +67,9 @@
 		font: normal 100px 'Cookie', cursive;
 		padding: 25px;
 		color: var(--c4);
-
 		border: 5px solid hsl(0, 0%, 40%);
-
 	  background: hsl(0, 0%, 20%);
-
 	  outline: 5px solid hsl(0, 0%, 60%);
-
 	  box-shadow: 0 0 0 10px hsl(0, 0%, 80%), 0 0 0 15px hsl(0, 0%, 90%);
   }
 
@@ -126,6 +127,10 @@
 	@media (max-width: 640px) {
 		#accueil #map {
 			margin-bottom: 150px;
+		}
+
+		#accueil #title {
+			display: none
 		}
 	}
 

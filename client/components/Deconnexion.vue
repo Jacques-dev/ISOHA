@@ -6,7 +6,13 @@
 
 <script>
   module.exports = {
+		mounted() {
+			if (this.radio.image) {
+				this.radio.image = null
+			}
+		},
     props: {
+      radio: { type: String },
       user: {type: Object }
     },
     data () {

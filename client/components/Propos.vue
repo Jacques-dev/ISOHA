@@ -176,6 +176,14 @@
 
 <script>
 	module.exports = {
+		props: {
+			radio: { type: String },
+		},
+		mounted() {
+			if (this.radio.image) {
+				this.radio.image = null
+			}
+		},
 		data () {
 			return {
 
